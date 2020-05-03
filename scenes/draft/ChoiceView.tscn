@@ -43,7 +43,7 @@ __meta__ = {
 
 [node name="Button" type="Button" parent="ChoicesGridContainer"]
 margin_right = 200.0
-margin_bottom = 60.0
+margin_bottom = 61.0
 rect_min_size = Vector2( 200, 60 )
 theme = ExtResource( 1 )
 text = "Test"
@@ -52,7 +52,7 @@ clip_text = true
 [node name="Button9" type="Button" parent="ChoicesGridContainer"]
 margin_left = 220.0
 margin_right = 420.0
-margin_bottom = 60.0
+margin_bottom = 61.0
 rect_min_size = Vector2( 200, 60 )
 theme = ExtResource( 1 )
 text = "Test"
@@ -61,16 +61,16 @@ clip_text = true
 [node name="Button5" type="Button" parent="ChoicesGridContainer"]
 margin_left = 440.0
 margin_right = 640.0
-margin_bottom = 60.0
+margin_bottom = 61.0
 rect_min_size = Vector2( 200, 60 )
 theme = ExtResource( 1 )
 text = "Test"
 clip_text = true
 
 [node name="Button6" type="Button" parent="ChoicesGridContainer"]
-margin_top = 80.0
+margin_top = 81.0
 margin_right = 200.0
-margin_bottom = 140.0
+margin_bottom = 142.0
 rect_min_size = Vector2( 200, 60 )
 theme = ExtResource( 1 )
 text = "Test"
@@ -78,9 +78,9 @@ clip_text = true
 
 [node name="Button7" type="Button" parent="ChoicesGridContainer"]
 margin_left = 220.0
-margin_top = 80.0
+margin_top = 81.0
 margin_right = 420.0
-margin_bottom = 140.0
+margin_bottom = 142.0
 rect_min_size = Vector2( 200, 60 )
 theme = ExtResource( 1 )
 text = "Test"
@@ -88,18 +88,18 @@ clip_text = true
 
 [node name="Button8" type="Button" parent="ChoicesGridContainer"]
 margin_left = 440.0
-margin_top = 80.0
+margin_top = 81.0
 margin_right = 640.0
-margin_bottom = 140.0
+margin_bottom = 142.0
 rect_min_size = Vector2( 200, 60 )
 theme = ExtResource( 1 )
 text = "Test"
 clip_text = true
 
 [node name="Button2" type="Button" parent="ChoicesGridContainer"]
-margin_top = 160.0
+margin_top = 162.0
 margin_right = 200.0
-margin_bottom = 220.0
+margin_bottom = 223.0
 rect_min_size = Vector2( 200, 60 )
 theme = ExtResource( 1 )
 text = "Test"
@@ -107,9 +107,9 @@ clip_text = true
 
 [node name="Button3" type="Button" parent="ChoicesGridContainer"]
 margin_left = 220.0
-margin_top = 160.0
+margin_top = 162.0
 margin_right = 420.0
-margin_bottom = 220.0
+margin_bottom = 223.0
 rect_min_size = Vector2( 200, 60 )
 theme = ExtResource( 1 )
 text = "Test"
@@ -117,9 +117,9 @@ clip_text = true
 
 [node name="Button4" type="Button" parent="ChoicesGridContainer"]
 margin_left = 440.0
-margin_top = 160.0
+margin_top = 162.0
 margin_right = 640.0
-margin_bottom = 220.0
+margin_bottom = 223.0
 rect_min_size = Vector2( 200, 60 )
 theme = ExtResource( 1 )
 text = "Test"

@@ -19,7 +19,7 @@ var _data_controller : DataController
 var draft_options_view : Control
 var choice_view : DraftSceneChoiceView
 var results_view : DraftSceneResultsView
-var draft_options_container : VBoxContainer
+var draft_options_container : Container
 var button_tiers_container : Control
 var continue_button : Button
 

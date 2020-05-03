@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://scripts/draft/DraftScene.gd" type="Script" id=1]
 [ext_resource path="res://addons/nodepath_tracker/NodePathTracker.gd" type="Script" id=2]
 [ext_resource path="res://assets/smash_theme/smash_theme.theme" type="Theme" id=3]
 [ext_resource path="res://scenes/draft/ChoiceView.tscn" type="PackedScene" id=4]
 [ext_resource path="res://scripts/draft/ResultsView.gd" type="Script" id=5]
+[ext_resource path="res://scripts/ui/VSkewBoxContainer.gd" type="Script" id=6]
 
 [node name="DraftScene" type="Control"]
 anchor_right = 1.0
@@ -26,17 +27,20 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="DraftOptionsContainer" type="VBoxContainer" parent="DraftOptionsView"]
+[node name="DraftOptionsContainer" type="Container" parent="DraftOptionsView"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = 147.0
-margin_top = 40.0
-margin_right = -133.0
-margin_bottom = -170.0
+margin_left = 171.0
+margin_top = 24.0
+margin_right = -158.0
+margin_bottom = -155.0
 mouse_filter = 2
+script = ExtResource( 6 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+invert_orientation = true
+children_width = 500.0
 
 [node name="ButtonTiersContainer" type="Control" parent="DraftOptionsView"]
 margin_right = 40.0
@@ -70,10 +74,14 @@ __meta__ = {
 }
 
 [node name="ContinueButton" type="Button" parent="."]
-margin_left = 385.0
-margin_top = 490.0
-margin_right = 630.0
-margin_bottom = 558.0
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -122.5
+margin_top = -105.231
+margin_right = 122.5
+margin_bottom = -37.2314
 theme = ExtResource( 3 )
 text = "Continue"
 __meta__ = {
