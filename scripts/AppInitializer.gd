@@ -1,9 +1,13 @@
 extends Node
 
 func _ready():
-	$DataController.initialize_data()
+	randomize()
 	
-	$DraftScene.connect("continue_pressed", self, "_on_continue_pressed")
+	$DataController.initialize_data()
+	print($DataController.draft_modes)
+	
+	$DraftScene.setup($DataController.draft_modes["normal_draft"], $DataController)
+	$DraftScene.connect("draft_finished", self, "_on_draft_finished")
 
-func _on_continue_pressed():
-	print("continue pressed")
+func _on_draft_finished():
+	print("draft finished")

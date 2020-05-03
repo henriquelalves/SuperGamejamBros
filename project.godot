@@ -12,10 +12,34 @@ _global_script_classes=[ {
 "base": "Node",
 "class": "DataController",
 "language": "GDScript",
-"path": "res://scripts/data/data_initializer.gd"
+"path": "res://scripts/data/DataInitializer.gd"
+}, {
+"base": "Resource",
+"class": "DraftMode",
+"language": "GDScript",
+"path": "res://scripts/data/DraftMode.gd"
+}, {
+"base": "Control",
+"class": "DraftSceneChoiceView",
+"language": "GDScript",
+"path": "res://scripts/draft/ChoiceView.gd"
+}, {
+"base": "Control",
+"class": "DraftSceneResultsView",
+"language": "GDScript",
+"path": "res://scripts/draft/ResultsView.gd"
+}, {
+"base": "Node",
+"class": "NodePathTracker",
+"language": "GDScript",
+"path": "res://addons/nodepath_tracker/NodePathTracker.gd"
 } ]
 _global_script_class_icons={
-"DataController": ""
+"DataController": "",
+"DraftMode": "",
+"DraftSceneChoiceView": "",
+"DraftSceneResultsView": "",
+"NodePathTracker": ""
 }
 
 [application]
@@ -23,6 +47,10 @@ _global_script_class_icons={
 config/name="JamSmashBros"
 run/main_scene="res://scenes/AppInitializer.tscn"
 config/icon="res://assets/icon.png"
+
+[editor_plugins]
+
+enabled=PoolStringArray( "nodepath_tracker" )
 
 [importer_defaults]
 

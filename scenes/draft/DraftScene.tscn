@@ -1,8 +1,10 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://scripts/draft/DraftScene.gd" type="Script" id=1]
-[ext_resource path="res://scripts/draft/ButtonTier.gd" type="Script" id=2]
+[ext_resource path="res://addons/nodepath_tracker/NodePathTracker.gd" type="Script" id=2]
 [ext_resource path="res://assets/smash_theme/smash_theme.theme" type="Theme" id=3]
+[ext_resource path="res://scenes/draft/ChoiceView.tscn" type="PackedScene" id=4]
+[ext_resource path="res://scripts/draft/ResultsView.gd" type="Script" id=5]
 
 [node name="DraftScene" type="Control"]
 anchor_right = 1.0
@@ -11,14 +13,24 @@ script = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
-button_pivots_nodepaths = [ NodePath("VBoxContainer/HBoxContainer/Pivot"), NodePath("VBoxContainer/HBoxContainer2/Pivot"), NodePath("VBoxContainer/HBoxContainer3/Pivot") ]
-button_tier_nodepaths = [ NodePath("ButtonTiersContainer/ButtonTierA"), NodePath("ButtonTiersContainer/ButtonTierB"), NodePath("ButtonTiersContainer/ButtonTierC") ]
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
+[node name="NodePathTracker" type="Node" parent="."]
+script = ExtResource( 2 )
+nodepaths = [ NodePath("../DraftOptionsView/DraftOptionsContainer"), NodePath("../DraftOptionsView/ButtonTiersContainer"), NodePath("../ContinueButton"), NodePath("../ChoiceView"), NodePath("../DraftOptionsView"), NodePath("../ResultsView") ]
+
+[node name="DraftOptionsView" type="Control" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="DraftOptionsContainer" type="VBoxContainer" parent="DraftOptionsView"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 147.0
-margin_top = 73.0
+margin_top = 40.0
 margin_right = -133.0
 margin_bottom = -170.0
 mouse_filter = 2
@@ -26,84 +38,38 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
-margin_right = 744.0
-margin_bottom = 116.0
-mouse_filter = 2
-size_flags_vertical = 3
+[node name="ButtonTiersContainer" type="Control" parent="DraftOptionsView"]
+margin_right = 40.0
+margin_bottom = 40.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Label" type="Label" parent="VBoxContainer/HBoxContainer"]
-margin_top = 39.0
-margin_right = 200.0
-margin_bottom = 77.0
-rect_min_size = Vector2( 200, 0 )
-size_flags_vertical = 6
-theme = ExtResource( 3 )
-text = "Console Options"
+[node name="ChoiceView" parent="." instance=ExtResource( 4 )]
+visible = false
 
-[node name="Pivot" type="Control" parent="VBoxContainer/HBoxContainer"]
-margin_left = 204.0
-margin_right = 744.0
-margin_bottom = 116.0
-mouse_filter = 2
-size_flags_horizontal = 3
-
-[node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer"]
-margin_top = 120.0
-margin_right = 744.0
-margin_bottom = 236.0
-mouse_filter = 2
-size_flags_vertical = 3
+[node name="ResultsView" type="Control" parent="."]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 5 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Label" type="Label" parent="VBoxContainer/HBoxContainer2"]
-margin_top = 39.0
-margin_right = 200.0
-margin_bottom = 77.0
-rect_min_size = Vector2( 200, 0 )
-size_flags_vertical = 6
-theme = ExtResource( 3 )
-text = "Game Options"
-
-[node name="Pivot" type="Control" parent="VBoxContainer/HBoxContainer2"]
-margin_left = 204.0
-margin_right = 744.0
-margin_bottom = 116.0
+[node name="ResultsInfoContainer" type="VBoxContainer" parent="ResultsView"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 147.0
+margin_top = 40.0
+margin_right = -133.0
+margin_bottom = -170.0
 mouse_filter = 2
-size_flags_horizontal = 3
-
-[node name="HBoxContainer3" type="HBoxContainer" parent="VBoxContainer"]
-margin_top = 240.0
-margin_right = 744.0
-margin_bottom = 357.0
-mouse_filter = 2
-size_flags_vertical = 3
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Label" type="Label" parent="VBoxContainer/HBoxContainer3"]
-margin_top = 39.0
-margin_right = 200.0
-margin_bottom = 77.0
-rect_min_size = Vector2( 200, 0 )
-size_flags_vertical = 6
-theme = ExtResource( 3 )
-text = "Tool Options"
-
-[node name="Pivot" type="Control" parent="VBoxContainer/HBoxContainer3"]
-margin_left = 204.0
-margin_right = 744.0
-margin_bottom = 117.0
-mouse_filter = 2
-size_flags_horizontal = 3
-
-[node name="Continue" type="Button" parent="."]
+[node name="ContinueButton" type="Button" parent="."]
 margin_left = 385.0
 margin_top = 490.0
 margin_right = 630.0
@@ -113,61 +79,3 @@ text = "Continue"
 __meta__ = {
 "_edit_use_anchors_": false
 }
-
-[node name="ButtonTiersContainer" type="Control" parent="."]
-margin_right = 40.0
-margin_bottom = 40.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="ButtonTierA" type="Button" parent="ButtonTiersContainer"]
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-margin_left = 478.5
-margin_top = 77.0
-margin_right = 723.5
-margin_bottom = 145.0
-theme = ExtResource( 3 )
-text = "3 Options"
-script = ExtResource( 2 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-pivot_control_nodepath = NodePath("../../VBoxContainer/HBoxContainer/Pivot")
-
-[node name="ButtonTierB" type="Button" parent="ButtonTiersContainer"]
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-margin_left = 478.501
-margin_top = 197.0
-margin_right = 723.499
-margin_bottom = 265.0
-theme = ExtResource( 3 )
-text = "2 Options"
-script = ExtResource( 2 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-pivot_control_nodepath = NodePath("../../VBoxContainer/HBoxContainer2/Pivot")
-
-[node name="ButtonTierC" type="Button" parent="ButtonTiersContainer"]
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-margin_left = 478.501
-margin_top = 317.5
-margin_right = 723.499
-margin_bottom = 385.5
-theme = ExtResource( 3 )
-text = "1 Option"
-script = ExtResource( 2 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-pivot_control_nodepath = NodePath("../../VBoxContainer/HBoxContainer3/Pivot")

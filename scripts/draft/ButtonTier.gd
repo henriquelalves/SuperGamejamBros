@@ -1,19 +1,20 @@
-tool
 extends Button
 
-export(NodePath) var pivot_control_nodepath
-
 var is_pressing : bool
+var choices_data : int
 var pivot_control : Control
 
 signal left_top
 signal left_bottom
 
-func _ready():
-	pivot_control = get_node(pivot_control_nodepath)
-	rect_global_position = get_center_pivot_position()
+func setup(pivot : Control, button_label : String):
+	pivot_control = pivot
+	text = button_label
 	is_pressing = false
 	connect("gui_input", self, "_on_gui_input")
+
+func _ready():
+	rect_global_position = get_center_pivot_position()
 
 func _on_gui_input(event):
 	if event is InputEventMouseButton:
