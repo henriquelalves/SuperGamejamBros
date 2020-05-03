@@ -25,7 +25,7 @@ func _on_gui_input(event):
 	if is_pressing and event is InputEventMouseMotion:
 		rect_position += (event as InputEventMouseMotion).relative
 
-func _process(delta):
+func _process(_delta):
 	var rect_center_y = (rect_global_position - pivot_control.rect_global_position + (rect_size * 0.5)).y
 	var parent_bottom = (pivot_control.rect_size).y
 	var parent_top = 0
