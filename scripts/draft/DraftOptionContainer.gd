@@ -1,7 +1,7 @@
-extends HBoxContainer
+extends Control
 
 var pivot : Control = null
 
 func setup(option_text : String):
-	$Label.text = option_text
-	pivot = $Pivot
+	$HBoxContainer/Label.text = option_text
+	pivot = $HBoxContainer/Pivot

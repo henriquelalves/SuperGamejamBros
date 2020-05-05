@@ -1,7 +1,13 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://assets/smash_theme/smash_theme.theme" type="Theme" id=1]
 [ext_resource path="res://scripts/draft/ChoiceView.gd" type="Script" id=2]
+[ext_resource path="res://assets/smash_theme/fira-sans-font/FiraSans-Bold.ttf" type="DynamicFontData" id=3]
+[ext_resource path="res://scripts/ui/VSkewBoxContainer.gd" type="Script" id=4]
+
+[sub_resource type="DynamicFont" id=1]
+size = 30
+font_data = ExtResource( 3 )
 
 [node name="ChoiceView" type="Control"]
 anchor_right = 1.0
@@ -25,103 +31,78 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="ChoicesGridContainer" type="GridContainer" parent="."]
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-margin_left = -320.0
-margin_top = -123.488
-margin_right = 320.0
-margin_bottom = 96.5118
-custom_constants/vseparation = 20
-custom_constants/hseparation = 20
-columns = 3
+[node name="VSkewBoxContainer" type="Container" parent="."]
+anchor_top = 0.193
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 84.0
+margin_top = 64.2
+margin_right = -85.0
+margin_bottom = -73.0
+script = ExtResource( 4 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+centralize_visible = true
+invert_orientation = true
+children_width = 400.0
+separation = 10.0
 
-[node name="Button" type="Button" parent="ChoicesGridContainer"]
-margin_right = 200.0
-margin_bottom = 61.0
-rect_min_size = Vector2( 200, 60 )
+[node name="Button" type="Button" parent="VSkewBoxContainer"]
+margin_left = 231.0
+margin_right = 631.0
+margin_bottom = 61.4
+size_flags_horizontal = 3
+size_flags_vertical = 3
 theme = ExtResource( 1 )
+custom_fonts/font = SubResource( 1 )
 text = "Test"
 clip_text = true
 
-[node name="Button9" type="Button" parent="ChoicesGridContainer"]
-margin_left = 220.0
-margin_right = 420.0
-margin_bottom = 61.0
-rect_min_size = Vector2( 200, 60 )
+[node name="Button5" type="Button" parent="VSkewBoxContainer"]
+margin_left = 173.25
+margin_top = 71.4
+margin_right = 573.25
+margin_bottom = 132.8
+size_flags_horizontal = 3
+size_flags_vertical = 3
 theme = ExtResource( 1 )
+custom_fonts/font = SubResource( 1 )
 text = "Test"
 clip_text = true
 
-[node name="Button5" type="Button" parent="ChoicesGridContainer"]
-margin_left = 440.0
-margin_right = 640.0
-margin_bottom = 61.0
-rect_min_size = Vector2( 200, 60 )
+[node name="Button6" type="Button" parent="VSkewBoxContainer"]
+margin_left = 115.5
+margin_top = 142.8
+margin_right = 515.5
+margin_bottom = 204.2
+size_flags_horizontal = 3
+size_flags_vertical = 3
 theme = ExtResource( 1 )
+custom_fonts/font = SubResource( 1 )
 text = "Test"
 clip_text = true
 
-[node name="Button6" type="Button" parent="ChoicesGridContainer"]
-margin_top = 81.0
-margin_right = 200.0
-margin_bottom = 142.0
-rect_min_size = Vector2( 200, 60 )
+[node name="Button9" type="Button" parent="VSkewBoxContainer"]
+margin_left = 57.75
+margin_top = 214.2
+margin_right = 457.75
+margin_bottom = 275.6
+size_flags_horizontal = 3
+size_flags_vertical = 3
 theme = ExtResource( 1 )
+custom_fonts/font = SubResource( 1 )
 text = "Test"
 clip_text = true
 
-[node name="Button7" type="Button" parent="ChoicesGridContainer"]
-margin_left = 220.0
-margin_top = 81.0
-margin_right = 420.0
-margin_bottom = 142.0
-rect_min_size = Vector2( 200, 60 )
+[node name="Button7" type="Button" parent="VSkewBoxContainer"]
+margin_top = 285.6
+margin_right = 400.0
+margin_bottom = 347.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
 theme = ExtResource( 1 )
-text = "Test"
-clip_text = true
-
-[node name="Button8" type="Button" parent="ChoicesGridContainer"]
-margin_left = 440.0
-margin_top = 81.0
-margin_right = 640.0
-margin_bottom = 142.0
-rect_min_size = Vector2( 200, 60 )
-theme = ExtResource( 1 )
-text = "Test"
-clip_text = true
-
-[node name="Button2" type="Button" parent="ChoicesGridContainer"]
-margin_top = 162.0
-margin_right = 200.0
-margin_bottom = 223.0
-rect_min_size = Vector2( 200, 60 )
-theme = ExtResource( 1 )
-text = "Test"
-clip_text = true
-
-[node name="Button3" type="Button" parent="ChoicesGridContainer"]
-margin_left = 220.0
-margin_top = 162.0
-margin_right = 420.0
-margin_bottom = 223.0
-rect_min_size = Vector2( 200, 60 )
-theme = ExtResource( 1 )
-text = "Test"
-clip_text = true
-
-[node name="Button4" type="Button" parent="ChoicesGridContainer"]
-margin_left = 440.0
-margin_top = 162.0
-margin_right = 640.0
-margin_bottom = 223.0
-rect_min_size = Vector2( 200, 60 )
-theme = ExtResource( 1 )
+custom_fonts/font = SubResource( 1 )
 text = "Test"
 clip_text = true
 

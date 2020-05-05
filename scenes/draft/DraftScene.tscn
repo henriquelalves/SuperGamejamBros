@@ -30,10 +30,10 @@ __meta__ = {
 [node name="DraftOptionsContainer" type="Container" parent="DraftOptionsView"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = 171.0
-margin_top = 24.0
-margin_right = -158.0
-margin_bottom = -155.0
+margin_left = 89.0
+margin_top = 58.0
+margin_right = -77.0
+margin_bottom = -190.0
 mouse_filter = 2
 script = ExtResource( 6 )
 __meta__ = {
@@ -41,6 +41,7 @@ __meta__ = {
 }
 invert_orientation = true
 children_width = 500.0
+separation = 10.0
 
 [node name="ButtonTiersContainer" type="Control" parent="DraftOptionsView"]
 margin_right = 40.0

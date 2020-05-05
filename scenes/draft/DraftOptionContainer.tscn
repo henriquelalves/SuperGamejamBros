@@ -1,9 +1,25 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://assets/smash_theme/smash_theme.theme" type="Theme" id=1]
 [ext_resource path="res://scripts/draft/DraftOptionContainer.gd" type="Script" id=2]
+[ext_resource path="res://assets/smash_theme/fira-sans-font/FiraSans-BoldItalic.ttf" type="DynamicFontData" id=3]
 
-[node name="DraftOptionContainer" type="HBoxContainer"]
+[sub_resource type="StyleBoxFlat" id=1]
+bg_color = Color( 0.0196078, 0.027451, 0.027451, 0 )
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+corner_radius_top_left = 60
+corner_radius_top_right = 60
+corner_radius_bottom_right = 60
+corner_radius_bottom_left = 60
+
+[sub_resource type="DynamicFont" id=2]
+size = 35
+font_data = ExtResource( 3 )
+
+[node name="DraftOptionContainer" type="Control"]
 margin_right = 744.0
 margin_bottom = 127.0
 mouse_filter = 2
@@ -13,18 +29,38 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Label" type="Label" parent="."]
-margin_top = 44.0
-margin_right = 200.0
-margin_bottom = 82.0
-rect_min_size = Vector2( 200, 0 )
+[node name="Button" type="Button" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+custom_styles/hover = SubResource( 1 )
+custom_styles/pressed = SubResource( 1 )
+custom_styles/focus = SubResource( 1 )
+custom_styles/disabled = SubResource( 1 )
+custom_styles/normal = SubResource( 1 )
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 16.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="HBoxContainer"]
+margin_top = 38.0
+margin_right = 160.0
+margin_bottom = 89.0
+rect_min_size = Vector2( 160, 0 )
 size_flags_vertical = 6
 theme = ExtResource( 1 )
-text = "Console Options"
+custom_fonts/font = SubResource( 2 )
+custom_colors/font_color = Color( 0.92549, 0.929412, 0.929412, 1 )
+text = "Consoles"
 
-[node name="Pivot" type="Control" parent="."]
-margin_left = 204.0
-margin_right = 744.0
+[node name="Pivot" type="Control" parent="HBoxContainer"]
+margin_left = 164.0
+margin_right = 728.0
 margin_bottom = 127.0
 mouse_filter = 2
 size_flags_horizontal = 3

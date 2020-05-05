@@ -7,7 +7,7 @@ signal option_clicked(option_label)
 var buttons : Array
 
 func setup():
-	for button in $ChoicesGridContainer.get_children():
+	for button in $VSkewBoxContainer.get_children():
 		buttons.append(button)
 		button.connect("pressed", self, "_on_button_pressed", [button])
 
