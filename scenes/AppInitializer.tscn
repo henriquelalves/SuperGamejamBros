@@ -1,10 +1,11 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://scenes/data/DataController.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scripts/AppInitializer.gd" type="Script" id=2]
 [ext_resource path="res://scenes/draft/DraftScene.tscn" type="PackedScene" id=3]
 [ext_resource path="res://assets/ui/CRTShader.shader" type="Shader" id=4]
 [ext_resource path="res://assets/ui/CRTFrame.png" type="Texture" id=5]
+[ext_resource path="res://assets/ui/ClusterfuckBlur.png" type="Texture" id=6]
 
 [sub_resource type="ShaderMaterial" id=1]
 shader = ExtResource( 4 )
@@ -31,14 +32,10 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="ColorRect" type="ColorRect" parent="Background"]
-visible = false
+[node name="TextureRect" type="TextureRect" parent="Background"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-color = Color( 0.105882, 0.105882, 0.105882, 1 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
+texture = ExtResource( 6 )
 
 [node name="DraftScene" parent="." instance=ExtResource( 3 )]
 
