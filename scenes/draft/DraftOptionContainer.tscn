@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://assets/smash_theme/smash_theme.theme" type="Theme" id=1]
 [ext_resource path="res://scripts/draft/DraftOptionContainer.gd" type="Script" id=2]
 [ext_resource path="res://assets/smash_theme/fira-sans-font/FiraSans-BoldItalic.ttf" type="DynamicFontData" id=3]
+[ext_resource path="res://assets/ui/path817.png" type="Texture" id=4]
 
 [sub_resource type="StyleBoxFlat" id=1]
 bg_color = Color( 0.0196078, 0.027451, 0.027451, 0 )
@@ -20,7 +21,8 @@ size = 35
 font_data = ExtResource( 3 )
 
 [node name="DraftOptionContainer" type="Control"]
-margin_right = 744.0
+margin_left = -0.440063
+margin_right = 743.56
 margin_bottom = 127.0
 mouse_filter = 2
 size_flags_vertical = 3
@@ -38,6 +40,9 @@ custom_styles/pressed = SubResource( 1 )
 custom_styles/focus = SubResource( 1 )
 custom_styles/disabled = SubResource( 1 )
 custom_styles/normal = SubResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
 anchor_right = 1.0
@@ -64,3 +69,46 @@ margin_right = 728.0
 margin_bottom = 127.0
 mouse_filter = 2
 size_flags_horizontal = 3
+
+[node name="ArrowContainer" type="Control" parent="HBoxContainer/Pivot"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ArrowUp" type="TextureRect" parent="HBoxContainer/Pivot/ArrowContainer"]
+modulate = Color( 0.733333, 0.713726, 0.188235, 1 )
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+margin_left = 3.25537
+margin_top = -37.647
+margin_right = 53.2554
+margin_bottom = -12.647
+rect_scale = Vector2( 0.6, 0.6 )
+texture = ExtResource( 4 )
+expand = true
+flip_v = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ArrowDown" type="TextureRect" parent="HBoxContainer/Pivot/ArrowContainer"]
+modulate = Color( 0.733333, 0.713726, 0.188235, 1 )
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+margin_left = 3.25537
+margin_top = 23.9708
+margin_right = 53.2554
+margin_bottom = 48.9708
+rect_scale = Vector2( 0.6, 0.6 )
+texture = ExtResource( 4 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}

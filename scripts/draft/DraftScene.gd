@@ -78,7 +78,9 @@ func _on_button_tier_left_bottom(button_tier):
 				changed_button = button
 				break
 		
+		button_tier.pivot_control.get_child(0).hide()
 		button_tier.pivot_control = button_pivots[pivot_index+1]
+		button_tier.pivot_control.get_child(0).show()
 		changed_button.pivot_control = button_pivots[pivot_index]
 
 func _on_button_tier_left_top(button_tier):
@@ -91,7 +93,9 @@ func _on_button_tier_left_top(button_tier):
 				changed_button = button
 				break
 		
+		button_tier.pivot_control.get_child(0).hide()
 		button_tier.pivot_control = button_pivots[pivot_index-1]
+		button_tier.pivot_control.get_child(0).show()
 		changed_button.pivot_control = button_pivots[pivot_index]
 
 func _on_choice_option_clicked(option_label : String):

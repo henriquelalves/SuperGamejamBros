@@ -12,18 +12,31 @@ func setup(pivot : Control, button_label : String):
 	text = button_label
 	is_pressing = false
 	connect("gui_input", self, "_on_gui_input")
+	connect("mouse_entered", self, "_on_mouse_entered")
+	connect("mouse_exited", self, "_on_mouse_exited")
 
 func _ready():
 	rect_global_position = get_center_pivot_position()
+
+func _on_mouse_entered():
+	pivot_control.get_child(0).show()
+	pivot_control.get_child(0).modulate.a = 0.5
+
+func _on_mouse_exited():
+	pivot_control.get_child(0).hide()
 
 func _on_gui_input(event):
 	if event is InputEventMouseButton:
 		is_pressing = event.is_pressed()
 		if (is_pressing):
 			raise()
+			pivot_control.get_child(0).modulate.a = 1.0
+		else:
+			pivot_control.get_child(0).modulate.a = 0.5
 	
-	if is_pressing and event is InputEventMouseMotion:
-		rect_position += (event as InputEventMouseMotion).relative
+	if event is InputEventMouseMotion:
+		if is_pressing:
+			rect_position += (event as InputEventMouseMotion).relative
 
 func _process(_delta):
 	var rect_center_y = (rect_global_position - pivot_control.rect_global_position + (rect_size * 0.5)).y

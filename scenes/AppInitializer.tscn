@@ -59,3 +59,6 @@ anchor_bottom = 1.0
 mouse_filter = 2
 texture = ExtResource( 5 )
 expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
