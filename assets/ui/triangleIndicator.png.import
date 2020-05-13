@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/path817.png-c7479d574fb7bb765a2968faf340bb94.stex"
+path="res://.import/triangleIndicator.png-f4dd6e9af9d945a4b63973b47c5586fe.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/ui/path817.png"
-dest_files=[ "res://.import/path817.png-c7479d574fb7bb765a2968faf340bb94.stex" ]
+source_file="res://assets/ui/triangleIndicator.png"
+dest_files=[ "res://.import/triangleIndicator.png-f4dd6e9af9d945a4b63973b47c5586fe.stex" ]
 
 [params]
 

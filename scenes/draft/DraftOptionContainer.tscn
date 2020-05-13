@@ -3,7 +3,7 @@
 [ext_resource path="res://assets/smash_theme/smash_theme.theme" type="Theme" id=1]
 [ext_resource path="res://scripts/draft/DraftOptionContainer.gd" type="Script" id=2]
 [ext_resource path="res://assets/smash_theme/fira-sans-font/FiraSans-BoldItalic.ttf" type="DynamicFontData" id=3]
-[ext_resource path="res://assets/ui/path817.png" type="Texture" id=4]
+[ext_resource path="res://assets/ui/triangleIndicator.png" type="Texture" id=4]
 
 [sub_resource type="StyleBoxFlat" id=1]
 bg_color = Color( 0.0196078, 0.027451, 0.027451, 0 )

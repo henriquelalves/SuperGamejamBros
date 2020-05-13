@@ -1,0 +1,93 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://scripts/ui/VSkewBoxContainer.gd" type="Script" id=1]
+[ext_resource path="res://scenes/main_menu/MenuButton.tscn" type="PackedScene" id=2]
+[ext_resource path="res://assets/smash_theme/smash_theme.theme" type="Theme" id=3]
+[ext_resource path="res://scripts/main_menu/MainMenu.gd" type="Script" id=4]
+[ext_resource path="res://addons/nodepath_tracker/NodePathTracker.gd" type="Script" id=5]
+
+[node name="MainMenu" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="NodePathTracker" type="Node" parent="."]
+script = ExtResource( 5 )
+nodepaths = [ NodePath("../StartMenuContainer"), NodePath("../StartMenuContainer/VSkewBoxContainer/DraftButton"), NodePath("../DraftMenuContainer"), NodePath("../BackButtonContainer/BackButton"), NodePath("../DraftMenuContainer/VSkewBoxContainer/RankedDraftButton") ]
+
+[node name="StartMenuContainer" type="Control" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VSkewBoxContainer" type="Container" parent="StartMenuContainer"]
+margin_left = 235.0
+margin_top = 229.0
+margin_right = 587.0
+margin_bottom = 360.0
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="DraftButton" parent="StartMenuContainer/VSkewBoxContainer" instance=ExtResource( 2 )]
+margin_left = 0.0
+margin_top = 0.0
+margin_right = 127.0
+margin_bottom = 131.0
+
+[node name="DraftMenuContainer" type="Control" parent="."]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VSkewBoxContainer" type="Container" parent="DraftMenuContainer"]
+margin_left = 102.0
+margin_top = 203.0
+margin_right = 703.0
+margin_bottom = 425.0
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+centralize_visible = true
+invert_orientation = true
+children_width = 400.0
+separation = 60.0
+
+[node name="RankedDraftButton" type="Button" parent="DraftMenuContainer/VSkewBoxContainer"]
+margin_left = 100.5
+margin_top = 70.5
+margin_right = 500.5
+margin_bottom = 151.5
+theme = ExtResource( 3 )
+text = "Ranked Draft"
+
+[node name="SimpleDraftButton" type="Button" parent="DraftMenuContainer/VSkewBoxContainer"]
+visible = false
+margin_left = 100.5
+margin_top = 100.5
+margin_right = 500.5
+margin_bottom = 181.5
+theme = ExtResource( 3 )
+text = "Custom Draft"
+
+[node name="BackButtonContainer" type="Control" parent="."]
+margin_left = 11.4799
+margin_top = 13.6533
+margin_right = 210.48
+margin_bottom = 97.6533
+
+[node name="BackButton" type="Button" parent="BackButtonContainer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = ExtResource( 3 )
+text = "Back"

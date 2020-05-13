@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://scripts/draft/DraftScene.gd" type="Script" id=1]
 [ext_resource path="res://addons/nodepath_tracker/NodePathTracker.gd" type="Script" id=2]
@@ -6,6 +6,86 @@
 [ext_resource path="res://scenes/draft/ChoiceView.tscn" type="PackedScene" id=4]
 [ext_resource path="res://scripts/draft/ResultsView.gd" type="Script" id=5]
 [ext_resource path="res://scripts/ui/VSkewBoxContainer.gd" type="Script" id=6]
+[ext_resource path="res://scripts/draft/OptionsView.gd" type="Script" id=7]
+[ext_resource path="res://assets/ui/WormHoleEffect.shader" type="Shader" id=8]
+[ext_resource path="res://scripts/draft/WormHoleEffect.gd" type="Script" id=9]
+
+[sub_resource type="Gradient" id=1]
+colors = PoolColorArray( 0.298039, 0.882353, 0.854902, 1, 0.0160828, 0.132812, 0.113662, 1 )
+
+[sub_resource type="GradientTexture" id=2]
+gradient = SubResource( 1 )
+
+[sub_resource type="ShaderMaterial" id=3]
+shader = ExtResource( 8 )
+shader_param/screen_size = Vector2( 800, 600 )
+shader_param/worm_hole_origin = Vector2( 0.5, 0.5 )
+shader_param/cloud_color = Color( 0.105882, 0.117647, 0.121569, 1 )
+shader_param/base_color = Color( 0.0431373, 0.803922, 0.768627, 1 )
+shader_param/fog_color = Color( 0.25098, 0.788235, 0.764706, 1 )
+shader_param/time_override = 0.0
+shader_param/texture_alpha = 0.0
+shader_param/effect_multiplier = 1.5
+
+[sub_resource type="Animation" id=4]
+resource_name = "fade_in_level_1"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:material:shader_param/texture_alpha")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.4 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 0.0, 1.0 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:time_multiplier")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.4 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 0.0, 1.0 ]
+}
+
+[sub_resource type="Animation" id=5]
+resource_name = "level_2"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:time_multiplier")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.4 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 1.0, 3.0 ]
+}
+
+[sub_resource type="Animation" id=6]
+resource_name = "level_3"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:time_multiplier")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.4 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 3.0, 6.0 ]
+}
 
 [node name="DraftScene" type="Control"]
 anchor_right = 1.0
@@ -15,19 +95,56 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="Tween" type="Tween" parent="."]
+
 [node name="NodePathTracker" type="Node" parent="."]
 script = ExtResource( 2 )
-nodepaths = [ NodePath("../DraftOptionsView/DraftOptionsContainer"), NodePath("../DraftOptionsView/ButtonTiersContainer"), NodePath("../ContinueButton"), NodePath("../ChoiceView"), NodePath("../DraftOptionsView"), NodePath("../ResultsView") ]
+nodepaths = [ NodePath("../ChoiceView"), NodePath("../OptionsView"), NodePath("../ResultsView"), NodePath("../Background/WormHoleEffect") ]
 
-[node name="DraftOptionsView" type="Control" parent="."]
+[node name="Background" type="Control" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
-mouse_filter = 2
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="DraftOptionsContainer" type="Container" parent="DraftOptionsView"]
+[node name="Gradient" type="TextureRect" parent="Background"]
+margin_left = 520.112
+margin_top = -487.388
+margin_right = 1647.11
+margin_bottom = 617.612
+rect_rotation = 55.9846
+texture = SubResource( 2 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="WormHoleEffect" type="ColorRect" parent="Background"]
+material = SubResource( 3 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 9 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+time_multiplier = 0.0
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Background/WormHoleEffect"]
+anims/fade_in_level_1 = SubResource( 4 )
+anims/level_2 = SubResource( 5 )
+anims/level_3 = SubResource( 6 )
+
+[node name="OptionsView" type="Control" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+script = ExtResource( 7 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="DraftOptionsContainer" type="Container" parent="OptionsView"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 89.0
@@ -43,9 +160,24 @@ invert_orientation = true
 children_width = 500.0
 separation = 10.0
 
-[node name="ButtonTiersContainer" type="Control" parent="DraftOptionsView"]
+[node name="ButtonTiersContainer" type="Control" parent="OptionsView"]
 margin_right = 40.0
 margin_bottom = 40.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ContinueButton" type="Button" parent="OptionsView"]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -69.0
+margin_top = -105.0
+margin_right = 68.0
+margin_bottom = -37.0
+theme = ExtResource( 3 )
+text = "Start"
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -70,21 +202,6 @@ margin_top = 40.0
 margin_right = -133.0
 margin_bottom = -170.0
 mouse_filter = 2
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="ContinueButton" type="Button" parent="."]
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-margin_left = -122.5
-margin_top = -105.231
-margin_right = 122.5
-margin_bottom = -37.2314
-theme = ExtResource( 3 )
-text = "Continue"
 __meta__ = {
 "_edit_use_anchors_": false
 }

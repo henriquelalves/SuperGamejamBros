@@ -34,7 +34,9 @@ func _on_sort_children():
 	
 	var children_height = (rect_size.y - (separation * (get_child_count()-1))) / get_child_count()
 	var total_offset = rect_size.x - children_width
-	var x_offset = total_offset / (get_child_count()-1)
+	var x_offset = 0
+	if (get_child_count()-1 > 0):
+		x_offset = total_offset / (get_child_count()-1)
 	
 	var centralize_offset_y = 0
 	var centralize_offset_x = 0
@@ -44,7 +46,7 @@ func _on_sort_children():
 		for child in get_children():
 			if not child.visible:
 				hidden_children += 1
-		centralize_offset_y = children_height * hidden_children * 0.5 + separation * hidden_children
+		centralize_offset_y = children_height * hidden_children * 0.5 + (separation * hidden_children * 0.5)
 		centralize_offset_x = x_offset * hidden_children * 0.5
 	
 	var visible_children = 0

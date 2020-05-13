@@ -1,15 +1,12 @@
-[gd_scene load_steps=20 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://assets/ui/menu/menuButtonContour.png" type="Texture" id=1]
-[ext_resource path="res://assets/ui/ClusterfuckBlur.png" type="Texture" id=2]
-[ext_resource path="res://assets/ui/menu/menuButtonCard.png" type="Texture" id=3]
-[ext_resource path="res://assets/ui/menu/menuButtonFill.png" type="Texture" id=4]
-[ext_resource path="res://scripts/ui/Node2DToControlMask.gd" type="Script" id=5]
-[ext_resource path="res://scenes/main_menu/MenuButton.tscn" type="PackedScene" id=6]
-[ext_resource path="res://scripts/ui/MenuButtonContainer.gd" type="Script" id=7]
-[ext_resource path="res://assets/smash_theme/fira-sans-font/FiraSans-Bold.ttf" type="DynamicFontData" id=8]
-[ext_resource path="res://scripts/ui/VSkewBoxContainer.gd" type="Script" id=9]
-
+[ext_resource path="res://assets/smash_theme/fira-sans-font/FiraSans-Bold.ttf" type="DynamicFontData" id=2]
+[ext_resource path="res://scripts/ui/MenuButtonContainer.gd" type="Script" id=3]
+[ext_resource path="res://scripts/ui/Node2DToControlMask.gd" type="Script" id=4]
+[ext_resource path="res://assets/ui/menu/menuButtonFill.png" type="Texture" id=5]
+[ext_resource path="res://assets/ui/menu/menuButtonCard.png" type="Texture" id=6]
+[ext_resource path="res://scripts/main_menu/MenuButton.gd" type="Script" id=7]
 
 [sub_resource type="VisualShaderNodeBooleanUniform" id=1]
 uniform_name = "invert"
@@ -23,13 +20,13 @@ source = 2
 [sub_resource type="VisualShaderNodeInput" id=4]
 input_name = "uv"
 
-[sub_resource type="VisualShaderNodeSwitch" id=9]
+[sub_resource type="VisualShaderNodeSwitch" id=5]
 
-[sub_resource type="VisualShaderNodeVectorOp" id=10]
+[sub_resource type="VisualShaderNodeVectorOp" id=6]
 default_input_values = [ 0, Vector3( 1, 1, 1 ), 1, Vector3( 0, 0, 0 ) ]
 operator = 1
 
-[sub_resource type="VisualShader" id=8]
+[sub_resource type="VisualShader" id=7]
 code = "shader_type canvas_item;
 uniform bool invert;
 
@@ -95,17 +92,17 @@ nodes/fragment/5/node = SubResource( 3 )
 nodes/fragment/5/position = Vector2( -340, 160 )
 nodes/fragment/6/node = SubResource( 4 )
 nodes/fragment/6/position = Vector2( -560, 160 )
-nodes/fragment/7/node = SubResource( 9 )
+nodes/fragment/7/node = SubResource( 5 )
 nodes/fragment/7/position = Vector2( 18.8376, 39 )
-nodes/fragment/8/node = SubResource( 10 )
+nodes/fragment/8/node = SubResource( 6 )
 nodes/fragment/8/position = Vector2( 20, 200 )
 nodes/fragment/connections = PoolIntArray( 4, 0, 5, 2, 6, 0, 5, 0, 2, 0, 7, 0, 5, 0, 7, 2, 7, 0, 0, 0, 5, 0, 8, 1, 8, 0, 7, 1, 5, 1, 0, 1 )
 
-[sub_resource type="ShaderMaterial" id=11]
-shader = SubResource( 8 )
+[sub_resource type="ShaderMaterial" id=8]
+shader = SubResource( 7 )
 shader_param/invert = true
 
-[sub_resource type="Animation" id=14]
+[sub_resource type="Animation" id=9]
 length = 0.2
 tracks/0/type = "value"
 tracks/0/path = NodePath("Mask/TextureRect3:rect_position")
@@ -180,65 +177,32 @@ tracks/5/keys = {
 "values": [ 12.4738, 19.4232 ]
 }
 
-[sub_resource type="DynamicFont" id=13]
+[sub_resource type="DynamicFont" id=10]
 size = 50
 use_filter = true
-font_data = ExtResource( 8 )
+font_data = ExtResource( 2 )
 
-[node name="Control" type="Control"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Wallpaper" type="TextureRect" parent="."]
-anchor_right = 1.0
-anchor_bottom = 1.0
-texture = ExtResource( 2 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Node2D" type="Node2D" parent="."]
-visible = false
-position = Vector2( 313.235, 237.605 )
-
-[node name="VSkewBoxContainer" type="Container" parent="."]
-margin_left = 93.0
-margin_top = 106.0
-margin_right = 696.0
-margin_bottom = 512.0
-script = ExtResource( 9 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-centralize_visible = true
-invert_orientation = true
-children_width = 127.0
-
-[node name="MenuButton" parent="VSkewBoxContainer" instance=ExtResource( 6 )]
-
-[node name="MenuButton2" type="Control" parent="VSkewBoxContainer"]
-visible = false
-margin_top = 157.0
-margin_right = 127.0
-margin_bottom = 314.0
+[node name="MenuButton" type="Control"]
+margin_left = 238.0
+margin_top = 102.0
+margin_right = 365.0
+margin_bottom = 229.0
 rect_min_size = Vector2( 127, 127 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="MenuButtonContainer" type="Control" parent="VSkewBoxContainer/MenuButton2"]
-margin_right = 127.0
-margin_bottom = 127.0
-rect_clip_content = true
 script = ExtResource( 7 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="WhiteBackground" type="TextureRect" parent="VSkewBoxContainer/MenuButton2/MenuButtonContainer"]
+[node name="MenuButtonContainer" type="Control" parent="."]
+margin_right = 127.0
+margin_bottom = 127.0
+rect_clip_content = true
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="WhiteBackground" type="TextureRect" parent="MenuButtonContainer"]
 visible = false
 modulate = Color( 0.831373, 0.831373, 0.831373, 1 )
 anchor_right = 1.0
@@ -248,68 +212,68 @@ margin_top = -6.0
 margin_right = 6.0
 margin_bottom = 6.0
 mouse_filter = 2
-texture = ExtResource( 4 )
+texture = ExtResource( 5 )
 expand = true
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Mask" type="Light2D" parent="VSkewBoxContainer/MenuButton2/MenuButtonContainer"]
+[node name="Mask" type="Light2D" parent="MenuButtonContainer"]
 position = Vector2( 63, 63 )
 scale = Vector2( 0.348649, 0.348649 )
-texture = ExtResource( 4 )
+texture = ExtResource( 5 )
 mode = 3
 range_item_cull_mask = 2
-script = ExtResource( 5 )
+script = ExtResource( 4 )
 
-[node name="TextureRect3" type="TextureRect" parent="VSkewBoxContainer/MenuButton2/MenuButtonContainer/Mask"]
+[node name="TextureRect3" type="TextureRect" parent="MenuButtonContainer/Mask"]
 modulate = Color( 0.831373, 0.831373, 0.831373, 1 )
 light_mask = 2
-material = SubResource( 11 )
+material = SubResource( 8 )
 margin_left = -154.426
 margin_top = -61.3624
 margin_right = 65.5739
 margin_bottom = 286.638
 rect_rotation = -6.93198
 mouse_filter = 2
-texture = ExtResource( 3 )
+texture = ExtResource( 6 )
 expand = true
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="TextureRect" type="TextureRect" parent="VSkewBoxContainer/MenuButton2/MenuButtonContainer/Mask"]
+[node name="TextureRect" type="TextureRect" parent="MenuButtonContainer/Mask"]
 modulate = Color( 0.831373, 0.831373, 0.831373, 1 )
 light_mask = 2
-material = SubResource( 11 )
+material = SubResource( 8 )
 margin_left = -77.041
 margin_top = -84.578
 margin_right = 142.959
 margin_bottom = 263.422
 mouse_filter = 2
-texture = ExtResource( 3 )
+texture = ExtResource( 6 )
 expand = true
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="TextureRect2" type="TextureRect" parent="VSkewBoxContainer/MenuButton2/MenuButtonContainer/Mask"]
+[node name="TextureRect2" type="TextureRect" parent="MenuButtonContainer/Mask"]
 modulate = Color( 0.831373, 0.831373, 0.831373, 1 )
 light_mask = 2
-material = SubResource( 11 )
+material = SubResource( 8 )
 margin_left = 1.63428
 margin_top = -94.0363
 margin_right = 221.634
 margin_bottom = 253.964
 rect_rotation = 12.4738
 mouse_filter = 2
-texture = ExtResource( 3 )
+texture = ExtResource( 6 )
 expand = true
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="ButtonOutline" type="TextureRect" parent="VSkewBoxContainer/MenuButton2/MenuButtonContainer"]
+[node name="ButtonOutline" type="TextureRect" parent="MenuButtonContainer"]
 modulate = Color( 0.831373, 0.831373, 0.831373, 1 )
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -320,15 +284,15 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="VSkewBoxContainer/MenuButton2/MenuButtonContainer"]
-anims/hover = SubResource( 14 )
+[node name="AnimationPlayer" type="AnimationPlayer" parent="MenuButtonContainer"]
+anims/hover = SubResource( 9 )
 
-[node name="MenuButtonLabel" type="Label" parent="VSkewBoxContainer/MenuButton2"]
+[node name="MenuButtonLabel" type="Label" parent="."]
 margin_left = 141.214
 margin_top = 39.6669
 margin_right = 286.214
 margin_bottom = 100.667
-custom_fonts/font = SubResource( 13 )
+custom_fonts/font = SubResource( 10 )
 custom_colors/font_color = Color( 1, 0, 0, 1 )
 text = "DRAFT"
 __meta__ = {

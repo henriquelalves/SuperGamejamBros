@@ -15,8 +15,11 @@ func setup(pivot : Control, button_label : String):
 	connect("mouse_entered", self, "_on_mouse_entered")
 	connect("mouse_exited", self, "_on_mouse_exited")
 
-func _ready():
+func reset_position():
 	rect_global_position = get_center_pivot_position()
+
+func _ready():
+	reset_position()
 
 func _on_mouse_entered():
 	pivot_control.get_child(0).show()
