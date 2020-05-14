@@ -9,6 +9,7 @@ export(float) var children_width setget set_width
 export(float) var separation setget set_separation
 
 var child_rect : Rect2
+export(bool) var enable_fit_children : bool = true
 
 func set_centralize_visible(value):
 	centralize_visible = value
@@ -29,8 +30,10 @@ func set_separation(value):
 func _ready():
 	connect("sort_children", self, "_on_sort_children")
 
-func _on_sort_children():
-	if (get_child_count() == 0): return
+func _get_children_positions() -> Array:
+	if (get_child_count() == 0): return []
+	
+	var positions = []
 	
 	var children_height = (rect_size.y - (separation * (get_child_count()-1))) / get_child_count()
 	var total_offset = rect_size.x - children_width
@@ -51,7 +54,9 @@ func _on_sort_children():
 	
 	var visible_children = 0
 	for i in range(get_children().size()):
-		if (centralize_visible and not get_child(i).visible): continue
+		if (centralize_visible and not get_child(i).visible): 
+			positions.append(Rect2())
+			continue
 		
 		var index = i
 		if (centralize_visible): index = visible_children
@@ -60,6 +65,14 @@ func _on_sort_children():
 		var x_position = centralize_offset_x + x_offset * index
 		if (invert_orientation): x_position = total_offset - x_position
 		
-		fit_child_in_rect(child, Rect2(x_position, centralize_offset_y + children_height * index + (separation * index), children_width, children_height))
+		positions.append(Rect2(x_position, centralize_offset_y + children_height * index + (separation * index), children_width, children_height))
 		
 		if (centralize_visible): visible_children += 1
+	return positions
+
+func _on_sort_children():
+	if not enable_fit_children: return
+	
+	var positions = _get_children_positions()
+	for i in range(positions.size()):
+		fit_child_in_rect(get_child(i), positions[i])

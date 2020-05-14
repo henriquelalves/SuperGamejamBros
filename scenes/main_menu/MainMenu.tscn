@@ -73,10 +73,8 @@ text = "Ranked Draft"
 
 [node name="SimpleDraftButton" type="Button" parent="DraftMenuContainer/VSkewBoxContainer"]
 visible = false
-margin_left = 100.5
-margin_top = 100.5
-margin_right = 500.5
-margin_bottom = 181.5
+margin_right = 301.0
+margin_bottom = 61.0
 theme = ExtResource( 3 )
 text = "Custom Draft"
 
