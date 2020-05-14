@@ -19,3 +19,8 @@ func _reset():
 
 func _on_draft_finished():
 	print("draft finished")
+
+func _input(event):
+	if event is InputEventKey and event.is_pressed():
+		if event.scancode == KEY_F11:
+			OS.window_fullscreen = not OS.window_fullscreen

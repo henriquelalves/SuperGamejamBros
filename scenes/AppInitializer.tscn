@@ -10,7 +10,7 @@
 
 [sub_resource type="ShaderMaterial" id=1]
 shader = ExtResource( 4 )
-shader_param/screen_width = 1024.0
+shader_param/screen_width = 800.0
 shader_param/screen_height = 600.0
 shader_param/BarrelPower = 1.02
 shader_param/color_bleeding = 1.2

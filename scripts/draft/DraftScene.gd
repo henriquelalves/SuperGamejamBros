@@ -74,7 +74,7 @@ func _next_state():
 			options_view.hide()
 			choice_view.present()
 			choice_view.set_labels(_data_controller.get_random_consoles(draft_data[0]))
-			worm_hole_animation.play("fade_in_level_1")
+			worm_hole_animation.play("level_1")
 			choice_view.set_title("Choose your console!")
 			current_state = DRAFT_STATE.CONSOLE_CHOICE
 		DRAFT_STATE.CONSOLE_CHOICE:

@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://scripts/draft/DraftScene.gd" type="Script" id=1]
 [ext_resource path="res://addons/nodepath_tracker/NodePathTracker.gd" type="Script" id=2]
@@ -9,6 +9,7 @@
 [ext_resource path="res://scripts/draft/OptionsView.gd" type="Script" id=7]
 [ext_resource path="res://assets/ui/WormHoleEffect.shader" type="Shader" id=8]
 [ext_resource path="res://scripts/draft/WormHoleEffect.gd" type="Script" id=9]
+[ext_resource path="res://assets/smash_theme/fira-sans-font/FiraSans-Black.ttf" type="DynamicFontData" id=10]
 
 [sub_resource type="Gradient" id=1]
 colors = PoolColorArray( 0.298039, 0.882353, 0.854902, 1, 0.0160828, 0.132812, 0.113662, 1 )
@@ -19,16 +20,56 @@ gradient = SubResource( 1 )
 [sub_resource type="ShaderMaterial" id=3]
 shader = ExtResource( 8 )
 shader_param/screen_size = Vector2( 800, 600 )
-shader_param/worm_hole_origin = Vector2( 0.5, 0.5 )
+shader_param/worm_hole_origin = Vector2( 0.5, 1.5 )
 shader_param/cloud_color = Color( 0.105882, 0.117647, 0.121569, 1 )
 shader_param/base_color = Color( 0.0431373, 0.803922, 0.768627, 1 )
 shader_param/fog_color = Color( 0.25098, 0.788235, 0.764706, 1 )
 shader_param/time_override = 0.0
-shader_param/texture_alpha = 0.0
+shader_param/texture_alpha = 0.5
 shader_param/effect_multiplier = 1.5
 
+[sub_resource type="Animation" id=7]
+resource_name = "default"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:material:shader_param/texture_alpha")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0.5 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:time_multiplier")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0.0 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath(".:material:shader_param/worm_hole_origin")
+tracks/2/interp = 2
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 0.5, 1.5 ) ]
+}
+
 [sub_resource type="Animation" id=4]
-resource_name = "fade_in_level_1"
+resource_name = "level_1"
 length = 0.4
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:material:shader_param/texture_alpha")
@@ -40,7 +81,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0, 0.4 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
-"values": [ 0.0, 1.0 ]
+"values": [ 0.5, 1.0 ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath(".:time_multiplier")
@@ -53,6 +94,18 @@ tracks/1/keys = {
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
 "values": [ 0.0, 1.0 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath(".:material:shader_param/worm_hole_origin")
+tracks/2/interp = 2
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.2, 0.4 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0.5, 1.5 ), Vector2( 0.5, 0.7 ), Vector2( 0.5, 0.5 ) ]
 }
 
 [sub_resource type="Animation" id=5]
@@ -86,6 +139,13 @@ tracks/0/keys = {
 "update": 0,
 "values": [ 3.0, 6.0 ]
 }
+
+[sub_resource type="DynamicFont" id=8]
+size = 32
+outline_size = 2
+outline_color = Color( 0, 0, 0, 1 )
+use_filter = true
+font_data = ExtResource( 10 )
 
 [node name="DraftScene" type="Control"]
 anchor_right = 1.0
@@ -131,7 +191,8 @@ __meta__ = {
 time_multiplier = 0.0
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Background/WormHoleEffect"]
-anims/fade_in_level_1 = SubResource( 4 )
+anims/default = SubResource( 7 )
+anims/level_1 = SubResource( 4 )
 anims/level_2 = SubResource( 5 )
 anims/level_3 = SubResource( 6 )
 
@@ -144,13 +205,27 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="DraftModeTitle" type="Label" parent="OptionsView"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -218.0
+margin_top = 23.0
+margin_right = 2.0
+margin_bottom = 62.0
+rect_scale = Vector2( 2, 2 )
+custom_fonts/font = SubResource( 8 )
+text = "RANKED DRAFT"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="DraftOptionsContainer" type="Container" parent="OptionsView"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 89.0
-margin_top = 58.0
+margin_top = 124.316
 margin_right = -77.0
-margin_bottom = -190.0
+margin_bottom = -123.684
 mouse_filter = 2
 script = ExtResource( 6 )
 __meta__ = {
