@@ -56,6 +56,10 @@ func present():
 
 func _options_continue_pressed(data):
 	draft_data = data
+	options_view.hide()
+	worm_hole_animation.play("intro")
+
+func _intro_finished():
 	_next_state()
 
 func _on_choice_option_clicked(option_label : String):
@@ -71,7 +75,6 @@ func _on_choice_option_clicked(option_label : String):
 func _next_state():
 	match current_state:
 		DRAFT_STATE.SETTING_UP:
-			options_view.hide()
 			choice_view.present()
 			choice_view.set_labels(_data_controller.get_random_consoles(draft_data[0]))
 			worm_hole_animation.play("level_1")

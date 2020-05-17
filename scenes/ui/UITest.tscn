@@ -1,10 +1,9 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://assets/ui/WormHoleEffect.material" type="Material" id=1]
 [ext_resource path="res://assets/ui/ClusterfuckBlur.png" type="Texture" id=2]
-[ext_resource path="res://assets/smash_theme/smash_theme.theme" type="Theme" id=3]
+[ext_resource path="res://scripts/ui/SmashTitleLabel.gd" type="Script" id=3]
 [ext_resource path="res://scripts/ui/UITest.gd" type="Script" id=4]
-[ext_resource path="res://scripts/ui/VSkewBoxContainer.gd" type="Script" id=9]
 
 [node name="Control" type="Control"]
 anchor_right = 1.0
@@ -23,59 +22,16 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="VSkewBoxContainer" type="Container" parent="Wallpaper"]
-anchor_top = 0.193
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_left = 84.0
-margin_top = 64.2
-margin_right = -85.0
-margin_bottom = -73.0
-script = ExtResource( 9 )
+[node name="Label" type="Control" parent="."]
+margin_left = 252.301
+margin_top = 264.787
+margin_right = 252.301
+margin_bottom = 343.787
+script = ExtResource( 3 )
 __meta__ = {
-"_edit_use_anchors_": false,
-"_editor_description_": ""
+"_edit_use_anchors_": false
 }
-centralize_visible = true
-invert_orientation = true
-children_width = 400.0
-separation = 10.0
-enable_fit_children = false
 
-[node name="Button" type="Button" parent="Wallpaper/VSkewBoxContainer"]
-margin_left = 231.0
-margin_right = 631.0
-margin_bottom = 61.4
-theme = ExtResource( 3 )
-text = "teste1"
-
-[node name="Button2" type="Button" parent="Wallpaper/VSkewBoxContainer"]
-margin_left = 173.25
-margin_top = 71.4
-margin_right = 573.25
-margin_bottom = 132.8
-theme = ExtResource( 3 )
-text = "teste1"
-
-[node name="Button3" type="Button" parent="Wallpaper/VSkewBoxContainer"]
-margin_left = 115.5
-margin_top = 142.8
-margin_right = 515.5
-margin_bottom = 204.2
-theme = ExtResource( 3 )
-text = "teste1"
-
-[node name="Button4" type="Button" parent="Wallpaper/VSkewBoxContainer"]
-margin_left = 57.75
-margin_top = 214.2
-margin_right = 457.75
-margin_bottom = 275.6
-theme = ExtResource( 3 )
-text = "teste1"
-
-[node name="Button5" type="Button" parent="Wallpaper/VSkewBoxContainer"]
-margin_top = 285.6
-margin_right = 400.0
-margin_bottom = 347.0
-theme = ExtResource( 3 )
-text = "teste1"
+[node name="Label2" type="Label" parent="."]
+margin_right = 40.0
+margin_bottom = 14.0

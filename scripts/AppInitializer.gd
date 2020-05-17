@@ -8,6 +8,11 @@ func _ready():
 	$DraftScene.setup($DataController.draft_modes["normal_draft"], $DataController)
 	$MainMenu.connect("draft_selected", self, "_on_draft_selected")
 	$DraftScene.connect("draft_finished", self, "_on_draft_finished")
+	$EnterScreen.connect("start_pressed", self, "_on_start_pressed")
+
+func _on_start_pressed():
+	$EnterScreen.hide()
+	$MainMenu.show()
 
 func _on_draft_selected():
 	_reset()

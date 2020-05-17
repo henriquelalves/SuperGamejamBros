@@ -1,9 +1,10 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://assets/smash_theme/smash_theme.theme" type="Theme" id=1]
 [ext_resource path="res://scripts/draft/ChoiceView.gd" type="Script" id=2]
 [ext_resource path="res://assets/smash_theme/fira-sans-font/FiraSans-Bold.ttf" type="DynamicFontData" id=3]
 [ext_resource path="res://scripts/ui/VSkewBoxContainer.gd" type="Script" id=4]
+[ext_resource path="res://addons/nodepath_tracker/NodePathTracker.gd" type="Script" id=5]
 
 [sub_resource type="DynamicFont" id=1]
 size = 100
@@ -19,6 +20,34 @@ outline_color = Color( 0, 0, 0, 1 )
 use_filter = true
 font_data = ExtResource( 3 )
 
+[sub_resource type="Animation" id=4]
+resource_name = "header_show"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:rect_position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 15.0734 ), Vector2( 0, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
+
 [sub_resource type="DynamicFont" id=3]
 size = 30
 font_data = ExtResource( 3 )
@@ -32,7 +61,22 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="CounterLabel" type="Label" parent="."]
+[node name="Tween" type="Tween" parent="."]
+
+[node name="NodePathTracker" type="Node" parent="."]
+script = ExtResource( 5 )
+nodepaths = [ NodePath("../HeaderContainer/CounterLabel"), NodePath("../HeaderContainer/ChooseLabel"), NodePath("../ButtonsSkewContainer"), NodePath("../HeaderContainer/HeaderAnimationPlayer") ]
+
+[node name="HeaderContainer" type="Control" parent="."]
+modulate = Color( 1, 1, 1, 0 )
+anchor_right = 1.0
+margin_top = 15.0734
+margin_bottom = 201.073
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CounterLabel" type="Label" parent="HeaderContainer"]
 anchor_left = 0.5
 anchor_right = 0.5
 margin_left = -98.0
@@ -47,7 +91,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="ChooseLabel" type="Label" parent="."]
+[node name="ChooseLabel" type="Label" parent="HeaderContainer"]
 anchor_left = 0.5
 anchor_right = 0.5
 margin_left = -357.5
@@ -62,7 +106,10 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="VSkewBoxContainer" type="Container" parent="."]
+[node name="HeaderAnimationPlayer" type="AnimationPlayer" parent="HeaderContainer"]
+anims/header_show = SubResource( 4 )
+
+[node name="ButtonsSkewContainer" type="Container" parent="."]
 anchor_top = 0.193
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -78,11 +125,13 @@ centralize_visible = true
 invert_orientation = true
 children_width = 400.0
 separation = 10.0
+enable_fit_children = false
 
-[node name="Button" type="Button" parent="VSkewBoxContainer"]
+[node name="Button" type="Button" parent="ButtonsSkewContainer"]
 margin_left = 231.0
 margin_right = 631.0
 margin_bottom = 61.4
+rect_pivot_offset = Vector2( 200, 30 )
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme = ExtResource( 1 )
@@ -90,11 +139,12 @@ custom_fonts/font = SubResource( 3 )
 text = "Test"
 clip_text = true
 
-[node name="Button5" type="Button" parent="VSkewBoxContainer"]
+[node name="Button5" type="Button" parent="ButtonsSkewContainer"]
 margin_left = 173.25
 margin_top = 71.4
 margin_right = 573.25
 margin_bottom = 132.8
+rect_pivot_offset = Vector2( 200, 30 )
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme = ExtResource( 1 )
@@ -102,11 +152,12 @@ custom_fonts/font = SubResource( 3 )
 text = "Test"
 clip_text = true
 
-[node name="Button6" type="Button" parent="VSkewBoxContainer"]
+[node name="Button6" type="Button" parent="ButtonsSkewContainer"]
 margin_left = 115.5
 margin_top = 142.8
 margin_right = 515.5
 margin_bottom = 204.2
+rect_pivot_offset = Vector2( 200, 30 )
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme = ExtResource( 1 )
@@ -114,11 +165,12 @@ custom_fonts/font = SubResource( 3 )
 text = "Test"
 clip_text = true
 
-[node name="Button9" type="Button" parent="VSkewBoxContainer"]
+[node name="Button9" type="Button" parent="ButtonsSkewContainer"]
 margin_left = 57.75
 margin_top = 214.2
 margin_right = 457.75
 margin_bottom = 275.6
+rect_pivot_offset = Vector2( 200, 30 )
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme = ExtResource( 1 )
@@ -126,20 +178,14 @@ custom_fonts/font = SubResource( 3 )
 text = "Test"
 clip_text = true
 
-[node name="Button7" type="Button" parent="VSkewBoxContainer"]
+[node name="Button7" type="Button" parent="ButtonsSkewContainer"]
 margin_top = 285.6
 margin_right = 400.0
 margin_bottom = 347.0
+rect_pivot_offset = Vector2( 200, 30 )
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme = ExtResource( 1 )
 custom_fonts/font = SubResource( 3 )
 text = "Test"
 clip_text = true
-
-[node name="ButtonTiersContainer" type="Control" parent="."]
-margin_right = 40.0
-margin_bottom = 40.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
