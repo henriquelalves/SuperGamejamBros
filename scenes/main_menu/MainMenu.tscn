@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://scripts/ui/VSkewBoxContainer.gd" type="Script" id=1]
 [ext_resource path="res://scenes/main_menu/MenuButton.tscn" type="PackedScene" id=2]
 [ext_resource path="res://assets/smash_theme/smash_theme.theme" type="Theme" id=3]
 [ext_resource path="res://scripts/main_menu/MainMenu.gd" type="Script" id=4]
 [ext_resource path="res://addons/nodepath_tracker/NodePathTracker.gd" type="Script" id=5]
+[ext_resource path="res://assets/ui/ClusterfuckBlur.png" type="Texture" id=6]
 
 [node name="MainMenu" type="Control"]
 anchor_right = 1.0
@@ -17,6 +18,19 @@ __meta__ = {
 [node name="NodePathTracker" type="Node" parent="."]
 script = ExtResource( 5 )
 nodepaths = [ NodePath("../StartMenuContainer"), NodePath("../StartMenuContainer/VSkewBoxContainer/DraftButton"), NodePath("../DraftMenuContainer"), NodePath("../BackButtonContainer/BackButton"), NodePath("../DraftMenuContainer/VSkewBoxContainer/RankedDraftButton") ]
+
+[node name="Background" type="Control" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="BackgroundTexture" type="TextureRect" parent="Background"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture = ExtResource( 6 )
+expand = true
 
 [node name="StartMenuContainer" type="Control" parent="."]
 anchor_right = 1.0
@@ -83,6 +97,9 @@ margin_left = 11.4799
 margin_top = 13.6533
 margin_right = 210.48
 margin_bottom = 97.6533
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="BackButton" type="Button" parent="BackButtonContainer"]
 anchor_right = 1.0

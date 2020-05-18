@@ -1,25 +1,103 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://scripts/ui/VSkewBoxContainer.gd" type="Script" id=1]
 [ext_resource path="res://assets/smash_theme/smash_theme.theme" type="Theme" id=2]
 [ext_resource path="res://scripts/draft/OptionsView.gd" type="Script" id=3]
-[ext_resource path="res://assets/ui/FireMaterial.material" type="Material" id=4]
 
-[sub_resource type="DynamicFontData" id=1]
+[sub_resource type="DynamicFontData" id=4]
 font_path = "res://assets/smash_theme/fira-sans-font/FiraSans-ExtraBoldItalic.ttf"
 
-[sub_resource type="DynamicFont" id=2]
+[sub_resource type="DynamicFont" id=5]
 size = 32
 outline_size = 2
 outline_color = Color( 0, 0, 0, 1 )
 use_filter = true
-font_data = SubResource( 1 )
+font_data = SubResource( 4 )
 
-[sub_resource type="DynamicFont" id=5]
+[sub_resource type="Shader" id=3]
+code = "// Based on https://www.shadertoy.com/view/4ttGWM
+
+shader_type canvas_item;
+
+uniform float height_multiplier;
+uniform float height_scale;
+
+float rand(vec2 n) {
+	return fract(sin(cos(dot(n, vec2(12.9898,12.1414)))) * 83758.5453);
+}
+
+float noise(vec2 n) {
+	const vec2 d = vec2(0.0, 1.0);
+	vec2 b = floor(n), f = smoothstep(vec2(0.0), vec2(1.0), fract(n));
+	return mix(mix(rand(b), rand(b + d.yx), f.x), mix(rand(b + d.xy), rand(b + d.yy), f.x), f.y);
+}
+
+float fbm(vec2 n) {
+	float total = 0.0, amplitude = 1.0;
+	for (int i = 0; i <5; i++) {
+		total += noise(n) * amplitude;
+		n += n*1.7;
+		amplitude *= 0.47;
+	}
+	return total;
+}
+
+void render( out vec4 fragColor, in vec2 screen_pixel_size, in vec2 fragCoord, float time ) {
+
+    const vec3 c1 = vec3(0.5, 0.0, 0.1);
+    const vec3 c2 = vec3(0.9, 0.1, 0.0);
+    const vec3 c3 = vec3(0.2, 0.1, 0.7);
+    const vec3 c4 = vec3(1.0, 0.9, 0.1);
+    const vec3 c5 = vec3(0.1);
+    const vec3 c6 = vec3(0.9);
+
+    vec2 speed = vec2(0.1, 0.9);
+    float shift = 1.327+sin(time*2.0)/2.4;
+    float alpha = 1.0;
+    
+	float dist = 3.5-sin(time*0.4)/1.89;
+    
+	vec2 iResolution = 1.0 / screen_pixel_size;
+    vec2 uv = fragCoord.xy / iResolution.xy;
+    vec2 p = fragCoord.xy * dist / iResolution.xx;
+    p += sin(p.yx*4.0+vec2(.2,-.3)*time)*0.04;
+    p += sin(p.yx*8.0+vec2(.6,+.1)*time)*0.01;
+    
+    p.x -= time/1.1;
+    float q = fbm(p - time * 0.3+1.0*sin(time+0.5)/2.0);
+    float qb = fbm(p - time * 0.4+0.1*cos(time)/2.0);
+    float q2 = fbm(p - time * 0.44 - 5.0*cos(time)/2.0) - 6.0;
+    float q3 = fbm(p - time * 0.9 - 10.0*cos(time)/15.0)-4.0;
+    float q4 = fbm(p - time * 1.4 - 20.0*sin(time)/14.0)+2.0;
+    q = (q + qb - .4 * q2 -2.0*q3  + .6*q4)/3.8;
+    vec2 r = vec2(fbm(p + q /2.0 + time * speed.x - p.x - p.y), fbm(p + q - time * speed.y));
+    vec3 c = mix(c1, c2, fbm(p + r)) + mix(c3, c4, r.x) - mix(c5, c6, r.y);
+    vec3 color = vec3(1.0/(pow(c+1.61,vec3(4.0))) * cos(shift * fragCoord.y / iResolution.y));
+    
+    color=vec3(1.0,.2,.05)/(pow((r.y+r.y)* max(.0,p.y)+0.1, 4.0));
+    //color += (texture(iChannel0,uv*0.6+vec2(.5,.1)).xyz*0.01*pow((r.y+r.y)*.65,5.0)+0.055)*mix( vec3(.9,.4,.3),vec3(.7,.5,.2), uv.y);
+    color = color/(1.0+max(vec3(0),color));
+    fragColor = vec4(color.x, color.y, color.z, alpha);
+}
+
+void fragment(){
+	vec4 color = texture(TEXTURE, UV);
+	vec4 fire_color;
+	vec2 texture_pixel_size = TEXTURE_PIXEL_SIZE * vec2(1, height_multiplier);
+	render(fire_color, texture_pixel_size, UV * vec2(1.0,height_scale) / texture_pixel_size, TIME);
+	COLOR = color * fire_color;
+}"
+
+[sub_resource type="ShaderMaterial" id=6]
+shader = SubResource( 3 )
+shader_param/height_multiplier = 1.0
+shader_param/height_scale = 1.4
+
+[sub_resource type="DynamicFont" id=7]
 size = 32
 outline_color = Color( 0, 0, 0, 1 )
 use_filter = true
-font_data = SubResource( 1 )
+font_data = SubResource( 4 )
 
 [node name="OptionsView" type="Control"]
 anchor_right = 1.0
@@ -38,7 +116,7 @@ margin_top = 37.0647
 margin_right = -5.43274
 margin_bottom = 76.0647
 rect_scale = Vector2( 2, 2 )
-custom_fonts/font = SubResource( 2 )
+custom_fonts/font = SubResource( 5 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "RANKED DRAFT"
 __meta__ = {
@@ -46,13 +124,13 @@ __meta__ = {
 }
 
 [node name="DraftModeTitle2" type="Label" parent="DraftModeTitle"]
-material = ExtResource( 4 )
+material = SubResource( 6 )
 anchor_left = 0.5
 anchor_right = 0.5
 margin_left = -110.0
 margin_right = 110.0
 margin_bottom = 39.0
-custom_fonts/font = SubResource( 5 )
+custom_fonts/font = SubResource( 7 )
 custom_colors/font_color = Color( 1, 1, 1, 1 )
 text = "RANKED DRAFT"
 __meta__ = {

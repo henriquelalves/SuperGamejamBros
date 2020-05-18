@@ -20,7 +20,7 @@ outline_color = Color( 0, 0, 0, 1 )
 use_filter = true
 font_data = ExtResource( 3 )
 
-[sub_resource type="Animation" id=4]
+[sub_resource type="Animation" id=3]
 resource_name = "header_show"
 length = 0.2
 tracks/0/type = "value"
@@ -48,7 +48,7 @@ tracks/1/keys = {
 "values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
 }
 
-[sub_resource type="DynamicFont" id=3]
+[sub_resource type="DynamicFont" id=4]
 size = 30
 font_data = ExtResource( 3 )
 
@@ -107,7 +107,7 @@ __meta__ = {
 }
 
 [node name="HeaderAnimationPlayer" type="AnimationPlayer" parent="HeaderContainer"]
-anims/header_show = SubResource( 4 )
+anims/header_show = SubResource( 3 )
 
 [node name="ButtonsSkewContainer" type="Container" parent="."]
 anchor_top = 0.193
@@ -135,7 +135,7 @@ rect_pivot_offset = Vector2( 200, 30 )
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme = ExtResource( 1 )
-custom_fonts/font = SubResource( 3 )
+custom_fonts/font = SubResource( 4 )
 text = "Test"
 clip_text = true
 
@@ -148,7 +148,7 @@ rect_pivot_offset = Vector2( 200, 30 )
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme = ExtResource( 1 )
-custom_fonts/font = SubResource( 3 )
+custom_fonts/font = SubResource( 4 )
 text = "Test"
 clip_text = true
 
@@ -161,7 +161,7 @@ rect_pivot_offset = Vector2( 200, 30 )
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme = ExtResource( 1 )
-custom_fonts/font = SubResource( 3 )
+custom_fonts/font = SubResource( 4 )
 text = "Test"
 clip_text = true
 
@@ -174,7 +174,7 @@ rect_pivot_offset = Vector2( 200, 30 )
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme = ExtResource( 1 )
-custom_fonts/font = SubResource( 3 )
+custom_fonts/font = SubResource( 4 )
 text = "Test"
 clip_text = true
 
@@ -186,6 +186,6 @@ rect_pivot_offset = Vector2( 200, 30 )
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme = ExtResource( 1 )
-custom_fonts/font = SubResource( 3 )
+custom_fonts/font = SubResource( 4 )
 text = "Test"
 clip_text = true

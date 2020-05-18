@@ -2,6 +2,8 @@ extends Control
 
 enum DRAFT_STATE {SETTING_UP, CONSOLE_CHOICE, GAME_CHOICE, TOOL_CHOICE, RESULTS}
 
+signal draft_finished
+
 var current_state = 0
 
 var draft_option_container_scene = preload("res://scenes/draft/DraftOptionContainer.tscn")
@@ -25,8 +27,6 @@ var picked_console : String
 var picked_game : String
 var picked_tool : String
 
-signal draft_finished
-
 func setup(draft_mode : DraftMode, data_controller : DataController):
 	_data_controller = data_controller
 	
@@ -47,6 +47,10 @@ func setup(draft_mode : DraftMode, data_controller : DataController):
 	
 	choice_view.setup()
 	choice_view.connect("option_clicked", self, "_on_choice_option_clicked")
+	choice_view.connect("option_animation_finished", self, "_on_choice_option_animation_finished")
+
+	results_view.setup()
+	results_view.connect("back_pressed", self, "emit_signal", ["draft_finished"])
 
 func present():
 	show()
@@ -62,6 +66,16 @@ func _options_continue_pressed(data):
 func _intro_finished():
 	_next_state()
 
+func _results_animation_finished():
+	_next_state()
+
+func _on_choice_option_animation_finished():
+	match current_state:
+		DRAFT_STATE.CONSOLE_CHOICE:
+			_next_state()
+		DRAFT_STATE.GAME_CHOICE:
+			_next_state()
+
 func _on_choice_option_clicked(option_label : String):
 	match current_state:
 		DRAFT_STATE.CONSOLE_CHOICE:
@@ -69,8 +83,9 @@ func _on_choice_option_clicked(option_label : String):
 		DRAFT_STATE.GAME_CHOICE:
 			chosen_game = option_label
 		DRAFT_STATE.TOOL_CHOICE:
+			choice_view.dismiss()
 			chosen_tool = option_label
-	_next_state()
+			worm_hole_animation.play("results")
 
 func _next_state():
 	match current_state:
@@ -91,8 +106,6 @@ func _next_state():
 			choice_view.set_title("Choose your weapon!")
 			current_state = DRAFT_STATE.TOOL_CHOICE
 		DRAFT_STATE.TOOL_CHOICE:
-			pass
-			results_view.setup(["Console", "Game", "Tool"], [chosen_console, chosen_game, chosen_tool])
+			results_view.set_results(["Console", "Game", "Tool"], [chosen_console, chosen_game, chosen_tool])
 			results_view.show()
-			choice_view.dismiss()
 			current_state = DRAFT_STATE.RESULTS

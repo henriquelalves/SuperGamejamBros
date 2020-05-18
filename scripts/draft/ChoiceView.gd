@@ -3,6 +3,7 @@ extends Control
 class_name DraftSceneChoiceView
 
 signal option_clicked(option_label)
+signal option_animation_finished()
 
 var timer : float
 var buttons : Array
@@ -95,7 +96,7 @@ func _tween_all_completed():
 		selected_button.rect_rotation = 0
 		selected_button.rect_scale = Vector2.ONE
 		selected_button.modulate.a = 1.0
-		emit_signal("option_clicked", selected_button.text)
+		emit_signal("option_animation_finished")
 		selected_button = null
 
 func _process(delta):
@@ -109,4 +110,5 @@ func _process(delta):
 func _on_button_pressed(button : Button):
 	timer += 10
 	selected_button = button
+	emit_signal("option_clicked", selected_button.text)
 	_exit_labels_animation()
