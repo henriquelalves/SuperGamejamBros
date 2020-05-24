@@ -2,7 +2,7 @@
 
 [ext_resource path="res://assets/ui/WormHoleEffect.material" type="Material" id=1]
 [ext_resource path="res://assets/ui/ClusterfuckBlur.png" type="Texture" id=2]
-[ext_resource path="res://scripts/ui/SmashTitleLabel.gd" type="Script" id=3]
+[ext_resource path="res://scenes/draft/DraftButton.tscn" type="PackedScene" id=3]
 [ext_resource path="res://scripts/ui/UITest.gd" type="Script" id=4]
 
 [node name="Control" type="Control"]
@@ -17,21 +17,11 @@ __meta__ = {
 material = ExtResource( 1 )
 anchor_right = 1.0
 anchor_bottom = 1.0
+margin_top = -0.630249
+margin_bottom = -0.630249
 texture = ExtResource( 2 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Label" type="Control" parent="."]
-margin_left = 252.301
-margin_top = 264.787
-margin_right = 252.301
-margin_bottom = 343.787
-script = ExtResource( 3 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Label2" type="Label" parent="."]
-margin_right = 40.0
-margin_bottom = 14.0
+[node name="DraftButton" parent="." instance=ExtResource( 3 )]

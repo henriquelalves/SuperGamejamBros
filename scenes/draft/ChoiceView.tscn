@@ -5,6 +5,7 @@
 [ext_resource path="res://assets/smash_theme/fira-sans-font/FiraSans-Bold.ttf" type="DynamicFontData" id=3]
 [ext_resource path="res://scripts/ui/VSkewBoxContainer.gd" type="Script" id=4]
 [ext_resource path="res://addons/nodepath_tracker/NodePathTracker.gd" type="Script" id=5]
+[ext_resource path="res://scenes/draft/DraftButton.tscn" type="PackedScene" id=6]
 
 [sub_resource type="DynamicFont" id=1]
 size = 100
@@ -47,10 +48,6 @@ tracks/1/keys = {
 "update": 0,
 "values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
 }
-
-[sub_resource type="DynamicFont" id=4]
-size = 30
-font_data = ExtResource( 3 )
 
 [node name="ChoiceView" type="Control"]
 anchor_right = 1.0
@@ -114,9 +111,9 @@ anchor_top = 0.193
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 84.0
-margin_top = 88.6868
+margin_top = 88.2
 margin_right = -85.0
-margin_bottom = -48.5132
+margin_bottom = -45.0
 script = ExtResource( 4 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -127,65 +124,37 @@ children_width = 400.0
 separation = 10.0
 enable_fit_children = false
 
-[node name="Button" type="Button" parent="ButtonsSkewContainer"]
+[node name="DraftButton" parent="ButtonsSkewContainer" instance=ExtResource( 6 )]
 margin_left = 231.0
+margin_top = 0.0
 margin_right = 631.0
-margin_bottom = 61.4
-rect_pivot_offset = Vector2( 200, 30 )
-size_flags_horizontal = 3
-size_flags_vertical = 3
-theme = ExtResource( 1 )
-custom_fonts/font = SubResource( 4 )
-text = "Test"
-clip_text = true
+margin_bottom = 62.2
+rect_pivot_offset = Vector2( 200, 31.1 )
 
-[node name="Button5" type="Button" parent="ButtonsSkewContainer"]
+[node name="DraftButton2" parent="ButtonsSkewContainer" instance=ExtResource( 6 )]
 margin_left = 173.25
-margin_top = 71.4
+margin_top = 72.2
 margin_right = 573.25
-margin_bottom = 132.8
-rect_pivot_offset = Vector2( 200, 30 )
-size_flags_horizontal = 3
-size_flags_vertical = 3
-theme = ExtResource( 1 )
-custom_fonts/font = SubResource( 4 )
-text = "Test"
-clip_text = true
+margin_bottom = 134.4
+rect_pivot_offset = Vector2( 200, 31.1 )
 
-[node name="Button6" type="Button" parent="ButtonsSkewContainer"]
+[node name="DraftButton3" parent="ButtonsSkewContainer" instance=ExtResource( 6 )]
 margin_left = 115.5
-margin_top = 142.8
+margin_top = 144.4
 margin_right = 515.5
-margin_bottom = 204.2
-rect_pivot_offset = Vector2( 200, 30 )
-size_flags_horizontal = 3
-size_flags_vertical = 3
-theme = ExtResource( 1 )
-custom_fonts/font = SubResource( 4 )
-text = "Test"
-clip_text = true
+margin_bottom = 206.6
+rect_pivot_offset = Vector2( 200, 31.1 )
 
-[node name="Button9" type="Button" parent="ButtonsSkewContainer"]
+[node name="DraftButton4" parent="ButtonsSkewContainer" instance=ExtResource( 6 )]
 margin_left = 57.75
-margin_top = 214.2
+margin_top = 216.6
 margin_right = 457.75
-margin_bottom = 275.6
-rect_pivot_offset = Vector2( 200, 30 )
-size_flags_horizontal = 3
-size_flags_vertical = 3
-theme = ExtResource( 1 )
-custom_fonts/font = SubResource( 4 )
-text = "Test"
-clip_text = true
+margin_bottom = 278.8
+rect_pivot_offset = Vector2( 200, 31.1 )
 
-[node name="Button7" type="Button" parent="ButtonsSkewContainer"]
-margin_top = 285.6
+[node name="DraftButton5" parent="ButtonsSkewContainer" instance=ExtResource( 6 )]
+margin_left = 0.0
+margin_top = 288.8
 margin_right = 400.0
-margin_bottom = 347.0
-rect_pivot_offset = Vector2( 200, 30 )
-size_flags_horizontal = 3
-size_flags_vertical = 3
-theme = ExtResource( 1 )
-custom_fonts/font = SubResource( 4 )
-text = "Test"
-clip_text = true
+margin_bottom = 351.0
+rect_pivot_offset = Vector2( 200, 31.1 )

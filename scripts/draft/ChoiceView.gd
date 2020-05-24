@@ -16,7 +16,7 @@ var skew_container : VSkewBoxContainer
 var header_animation : AnimationPlayer
 var tween : Tween
 
-var selected_button : Button
+var selected_button : DraftButton
 
 func setup():
 	timer = 10
@@ -51,7 +51,7 @@ func set_labels(labels : Array):
 	for i in range(buttons.size()):
 		if (i < labels.size()):
 			buttons[i].show()
-			buttons[i].text = labels[i]
+			buttons[i].button_text = labels[i]
 		else:
 			buttons[i].hide()
 	_enter_labels_animation()
@@ -110,5 +110,5 @@ func _process(delta):
 func _on_button_pressed(button : Button):
 	timer += 10
 	selected_button = button
-	emit_signal("option_clicked", selected_button.text)
+	emit_signal("option_clicked", selected_button.button_text)
 	_exit_labels_animation()
