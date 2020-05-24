@@ -111,7 +111,7 @@ anchor_top = 0.193
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 84.0
-margin_top = 88.2
+margin_top = 85.2
 margin_right = -85.0
 margin_bottom = -45.0
 script = ExtResource( 4 )
@@ -128,33 +128,33 @@ enable_fit_children = false
 margin_left = 231.0
 margin_top = 0.0
 margin_right = 631.0
-margin_bottom = 62.2
-rect_pivot_offset = Vector2( 200, 31.1 )
+margin_bottom = 62.8
+rect_pivot_offset = Vector2( 200, 31.4 )
 
 [node name="DraftButton2" parent="ButtonsSkewContainer" instance=ExtResource( 6 )]
 margin_left = 173.25
-margin_top = 72.2
+margin_top = 72.8
 margin_right = 573.25
-margin_bottom = 134.4
-rect_pivot_offset = Vector2( 200, 31.1 )
+margin_bottom = 135.6
+rect_pivot_offset = Vector2( 200, 31.4 )
 
 [node name="DraftButton3" parent="ButtonsSkewContainer" instance=ExtResource( 6 )]
 margin_left = 115.5
-margin_top = 144.4
+margin_top = 145.6
 margin_right = 515.5
-margin_bottom = 206.6
-rect_pivot_offset = Vector2( 200, 31.1 )
+margin_bottom = 208.4
+rect_pivot_offset = Vector2( 200, 31.4 )
 
 [node name="DraftButton4" parent="ButtonsSkewContainer" instance=ExtResource( 6 )]
 margin_left = 57.75
-margin_top = 216.6
+margin_top = 218.4
 margin_right = 457.75
-margin_bottom = 278.8
-rect_pivot_offset = Vector2( 200, 31.1 )
+margin_bottom = 281.2
+rect_pivot_offset = Vector2( 200, 31.4 )
 
 [node name="DraftButton5" parent="ButtonsSkewContainer" instance=ExtResource( 6 )]
 margin_left = 0.0
-margin_top = 288.8
+margin_top = 291.2
 margin_right = 400.0
-margin_bottom = 351.0
-rect_pivot_offset = Vector2( 200, 31.1 )
+margin_bottom = 354.0
+rect_pivot_offset = Vector2( 200, 31.4 )

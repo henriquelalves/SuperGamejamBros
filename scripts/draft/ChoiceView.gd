@@ -55,6 +55,10 @@ func set_labels(labels : Array):
 		else:
 			buttons[i].hide()
 	_enter_labels_animation()
+	
+	yield(get_tree(),"idle_frame")
+	for i in range(buttons.size()):
+		buttons[i]._refresh_label()
 
 func _enter_labels_animation():
 	var positions = skew_container._get_children_positions()
