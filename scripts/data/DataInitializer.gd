@@ -1,6 +1,5 @@
-extends Node
-
 class_name DataController
+extends Node
 
 const RAW_LISTS_GAMES_PATH = "res://data/raw_lists/games/"
 const RAW_LISTS_TOOLS_PATH = "res://data/raw_lists/tools/"
@@ -10,25 +9,30 @@ var games_dictionary : Dictionary
 var tools_dictionary : Dictionary
 var draft_modes : Dictionary
 
+
 func get_random_games(console : String, number : int) -> Array:
 	var console_games = games_dictionary[console] as Array
 	console_games.shuffle()
 	return console_games.slice(0, number-1)
+
 
 func get_random_consoles(number : int) -> Array:
 	var consoles = games_dictionary.keys() as Array
 	consoles.shuffle()
 	return consoles.slice(0, number-1)
 
+
 func get_random_tools(number : int) -> Array:
 	var tools = tools_dictionary["game-engines"] as Array
 	tools.shuffle()
 	return tools.slice(0, number-1)
 
+
 func initialize_data():
 	_load_games_data()
 	_load_tools_data()
 	_load_draft_modes()
+
 
 func _load_draft_modes():
 	var dir = Directory.new()
@@ -43,6 +47,7 @@ func _load_draft_modes():
 			draft_modes[file.get_basename()] = load(DRAFT_MODES_PATH + file) as DraftMode
 	dir.list_dir_end()
 
+
 func _load_games_data():
 	var games_files = []
 	
@@ -56,6 +61,7 @@ func _load_games_data():
 			break
 		elif not file.begins_with(".") and not file.ends_with('.import'):
 			games_files.append(file)
+			print(games_files)
 	dir.list_dir_end()
 
 	var file = File.new()
@@ -67,6 +73,7 @@ func _load_games_data():
 		while (game != null and not game.empty()):
 			games_dictionary[console_file].append(game)
 			game = file.get_line()
+
 
 func _load_tools_data():
 	var tools_files = []

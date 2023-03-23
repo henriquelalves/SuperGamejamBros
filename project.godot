@@ -85,7 +85,6 @@ enabled=PoolStringArray( "nodepath_tracker" )
 [importer_defaults]
 
 csv={
-
 }
 
 [rendering]
