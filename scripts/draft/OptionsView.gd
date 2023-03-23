@@ -12,12 +12,17 @@ var draft_data : Array
 
 signal continue_pressed
 
+
 func setup(draft_mode : DraftMode):
 	$ContinueButton.connect("pressed", self, "_on_continue_pressed")
 	
 	var option_labels = ["Consoles", "Games", "Tools"]
 	
 	draft_data = [draft_mode.choiceA, draft_mode.choiceB, draft_mode.choiceC]
+	
+	for i in range(3-draft_mode.steps):
+		draft_data.pop_back()
+		option_labels.pop_back()
 	
 	for option_label in option_labels:
 		var draft_option = draft_option_container_scene.instance()
@@ -35,12 +40,14 @@ func setup(draft_mode : DraftMode):
 		button.choices_data = draft_data[i]
 		$ButtonTiersContainer.add_child(button)
 
+
 func present():
 	yield(get_tree(),"idle_frame")
 	
 	for button in button_tiers:
 		button.reset_position()
 		print(button)
+
 
 func _on_button_tier_left_bottom(button_tier):
 	var pivot_index = button_pivots.find(button_tier.pivot_control)
@@ -57,6 +64,7 @@ func _on_button_tier_left_bottom(button_tier):
 		button_tier.pivot_control.get_child(0).show()
 		changed_button.pivot_control = button_pivots[pivot_index]
 
+
 func _on_button_tier_left_top(button_tier):
 	var pivot_index = button_pivots.find(button_tier.pivot_control)
 	
@@ -71,6 +79,7 @@ func _on_button_tier_left_top(button_tier):
 		button_tier.pivot_control = button_pivots[pivot_index-1]
 		button_tier.pivot_control.get_child(0).show()
 		changed_button.pivot_control = button_pivots[pivot_index]
+
 
 func _on_continue_pressed():
 	for button in button_tiers:

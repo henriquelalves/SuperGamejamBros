@@ -11,13 +11,10 @@
 anchor_right = 1.0
 anchor_bottom = 1.0
 script = ExtResource( 4 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="NodePathTracker" type="Node" parent="."]
 script = ExtResource( 5 )
-nodepaths = [ NodePath("../StartMenuContainer"), NodePath("../StartMenuContainer/VSkewBoxContainer/DraftButton"), NodePath("../DraftMenuContainer"), NodePath("../BackButtonContainer/BackButton"), NodePath("../DraftMenuContainer/VSkewBoxContainer/RankedDraftButton") ]
+nodepaths = [ NodePath("../StartMenuContainer"), NodePath("../StartMenuContainer/VSkewBoxContainer/DraftButton"), NodePath("../DraftMenuContainer"), NodePath("../BackButtonContainer/BackButton"), NodePath("") ]
 
 [node name="Background" type="Control" parent="."]
 anchor_right = 1.0
@@ -33,11 +30,9 @@ texture = ExtResource( 6 )
 expand = true
 
 [node name="StartMenuContainer" type="Control" parent="."]
+unique_name_in_owner = true
 anchor_right = 1.0
 anchor_bottom = 1.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="VSkewBoxContainer" type="Container" parent="StartMenuContainer"]
 margin_left = 235.0
@@ -50,18 +45,17 @@ __meta__ = {
 }
 
 [node name="DraftButton" parent="StartMenuContainer/VSkewBoxContainer" instance=ExtResource( 2 )]
+unique_name_in_owner = true
 margin_left = 0.0
 margin_top = 0.0
 margin_right = 127.0
 margin_bottom = 131.0
 
 [node name="DraftMenuContainer" type="Control" parent="."]
+unique_name_in_owner = true
 visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="VSkewBoxContainer" type="Container" parent="DraftMenuContainer"]
 margin_left = 102.0
@@ -77,20 +71,21 @@ invert_orientation = true
 children_width = 400.0
 separation = 60.0
 
-[node name="RankedDraftButton" type="Button" parent="DraftMenuContainer/VSkewBoxContainer"]
-margin_left = 100.5
-margin_top = 70.5
-margin_right = 500.5
-margin_bottom = 151.5
+[node name="FullDraftButton" type="Button" parent="DraftMenuContainer/VSkewBoxContainer"]
+unique_name_in_owner = true
+margin_left = 201.0
+margin_right = 601.0
+margin_bottom = 81.0
 theme = ExtResource( 3 )
-text = "Ranked Draft"
+text = "Full Draft"
 
-[node name="SimpleDraftButton" type="Button" parent="DraftMenuContainer/VSkewBoxContainer"]
-visible = false
-margin_right = 301.0
-margin_bottom = 61.0
+[node name="GameDraftButton" type="Button" parent="DraftMenuContainer/VSkewBoxContainer"]
+unique_name_in_owner = true
+margin_top = 141.0
+margin_right = 400.0
+margin_bottom = 222.0
 theme = ExtResource( 3 )
-text = "Custom Draft"
+text = "Game Draft"
 
 [node name="BackButtonContainer" type="Control" parent="."]
 margin_left = 11.4799
@@ -102,6 +97,7 @@ __meta__ = {
 }
 
 [node name="BackButton" type="Button" parent="BackButtonContainer"]
+unique_name_in_owner = true
 anchor_right = 1.0
 anchor_bottom = 1.0
 theme = ExtResource( 3 )

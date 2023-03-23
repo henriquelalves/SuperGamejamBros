@@ -1,7 +1,6 @@
-[gd_scene load_steps=23 format=2]
+[gd_scene load_steps=22 format=2]
 
 [ext_resource path="res://scripts/draft/DraftScene.gd" type="Script" id=1]
-[ext_resource path="res://addons/nodepath_tracker/NodePathTracker.gd" type="Script" id=2]
 [ext_resource path="res://scenes/draft/OptionsView.tscn" type="PackedScene" id=3]
 [ext_resource path="res://scenes/draft/ChoiceView.tscn" type="PackedScene" id=4]
 [ext_resource path="res://scenes/draft/ResultsView.tscn" type="PackedScene" id=5]
@@ -518,15 +517,8 @@ font_data = SubResource( 10 )
 anchor_right = 1.0
 anchor_bottom = 1.0
 script = ExtResource( 1 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="Tween" type="Tween" parent="."]
-
-[node name="NodePathTracker" type="Node" parent="."]
-script = ExtResource( 2 )
-nodepaths = [ NodePath("../ChoiceView"), NodePath("../OptionsView"), NodePath("../ResultsView"), NodePath("../Background/WormHoleEffect") ]
 
 [node name="Background" type="Control" parent="."]
 anchor_right = 1.0
@@ -536,13 +528,11 @@ __meta__ = {
 }
 
 [node name="WormHoleEffect" type="ColorRect" parent="Background"]
+unique_name_in_owner = true
 material = ExtResource( 8 )
 anchor_right = 1.0
 anchor_bottom = 1.0
 script = ExtResource( 9 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 time_multiplier = 0.0
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Background/WormHoleEffect"]
@@ -582,8 +572,8 @@ margin_top = 8.59418
 margin_right = 119.119
 margin_bottom = 57.5942
 rect_scale = Vector2( 1.1, 1.3 )
-custom_fonts/font = SubResource( 9 )
 custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_fonts/font = SubResource( 9 )
 text = "Ranked Draft in"
 __meta__ = {
 "_edit_use_anchors_": false
@@ -598,13 +588,10 @@ margin_top = 80.8866
 margin_right = 38.512
 margin_bottom = 129.887
 rect_scale = Vector2( 2, 2 )
-custom_fonts/font = SubResource( 9 )
 custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_fonts/font = SubResource( 9 )
 text = "3"
 align = 1
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="LabelGo" type="Label" parent="Background/IntroLabels"]
 modulate = Color( 1, 1, 1, 0 )
@@ -615,8 +602,8 @@ margin_top = 231.867
 margin_right = -1.33154
 margin_bottom = 308.867
 rect_scale = Vector2( 2, 2 )
-custom_fonts/font = SubResource( 11 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_fonts/font = SubResource( 11 )
 text = "GO!"
 align = 1
 __meta__ = {
@@ -630,8 +617,8 @@ anchor_right = 0.5
 margin_left = -110.0
 margin_right = 110.0
 margin_bottom = 39.0
-custom_fonts/font = SubResource( 14 )
 custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_fonts/font = SubResource( 14 )
 text = "GO!"
 align = 1
 __meta__ = {
@@ -647,9 +634,12 @@ __meta__ = {
 }
 
 [node name="OptionsView" parent="." instance=ExtResource( 3 )]
+unique_name_in_owner = true
 
 [node name="ChoiceView" parent="." instance=ExtResource( 4 )]
+unique_name_in_owner = true
 visible = false
 
 [node name="ResultsView" parent="." instance=ExtResource( 5 )]
+unique_name_in_owner = true
 visible = false

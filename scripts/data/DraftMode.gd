@@ -6,3 +6,4 @@ export(String) var mode_name
 export(int) var choiceA
 export(int) var choiceB
 export(int) var choiceC
+export(int) var steps = 3

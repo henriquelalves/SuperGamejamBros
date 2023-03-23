@@ -10,6 +10,7 @@ export(PackedScene) var main_menu_scene
 export(PackedScene) var enter_screen_scene
 export(PackedScene) var draft_scene
 
+
 func _ready():
 	randomize()
 	
@@ -17,20 +18,25 @@ func _ready():
 	
 	_show_scene(CurrentScene.EnterScreen)
 
+
 func _clean_scene():
 	if ($CurrentScene.get_child_count() > 0):
 		$CurrentScene.get_child(0).queue_free()
 
+
 func _on_start_pressed():
 	_show_scene(CurrentScene.MainMenu)
 	
-func _on_draft_selected():
-	_show_scene(CurrentScene.Draft)
+
+func _on_draft_selected(draft_mode):
+	_show_scene(CurrentScene.Draft, [draft_mode])
+
 
 func _on_draft_finished():
 	_show_scene(CurrentScene.MainMenu)
 
-func _show_scene(current_scene : int):
+
+func _show_scene(current_scene : int, args = []):
 	_clean_scene()
 	var scene_node : Node
 	
@@ -44,7 +50,7 @@ func _show_scene(current_scene : int):
 		CurrentScene.Draft:
 			scene_node = draft_scene.instance()
 			$CurrentScene.add_child(scene_node)
-			scene_node.setup($DataController.draft_modes["normal_draft"], $DataController)
+			scene_node.setup($DataController.draft_modes[args[0]], $DataController)
 			scene_node.connect("draft_finished", self, "_on_draft_finished")
 			scene_node.present()
 		
@@ -52,6 +58,7 @@ func _show_scene(current_scene : int):
 			scene_node = enter_screen_scene.instance()
 			$CurrentScene.add_child(scene_node)
 			scene_node.connect("start_pressed", self, "_on_start_pressed")
+
 
 func _input(event):
 	if event is InputEventKey and event.is_pressed():

@@ -104,9 +104,6 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 mouse_filter = 2
 script = ExtResource( 3 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="DraftModeTitle" type="Label" parent="."]
 anchor_left = 0.5
@@ -116,8 +113,8 @@ margin_top = 37.0647
 margin_right = -5.43274
 margin_bottom = 76.0647
 rect_scale = Vector2( 2, 2 )
-custom_fonts/font = SubResource( 5 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_fonts/font = SubResource( 5 )
 text = "RANKED DRAFT"
 __meta__ = {
 "_edit_use_anchors_": false
@@ -130,8 +127,8 @@ anchor_right = 0.5
 margin_left = -110.0
 margin_right = 110.0
 margin_bottom = 39.0
-custom_fonts/font = SubResource( 7 )
 custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_fonts/font = SubResource( 7 )
 text = "RANKED DRAFT"
 __meta__ = {
 "_edit_use_anchors_": false

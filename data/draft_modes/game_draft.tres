@@ -4,7 +4,8 @@
 
 [resource]
 script = ExtResource( 1 )
-mode_name = "Normal Draft"
+mode_name = "Game Draft"
 choiceA = 5
 choiceB = 3
-choiceC = 1
+choiceC = 0
+steps = 2
